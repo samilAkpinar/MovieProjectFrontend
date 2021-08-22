@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+
+@media (prefers-color-scheme: dark) {
+ 
+    body{
+        background-color: #63666A;
+    }
+ }
+     
+ 
+ html, body { height: 100%; }
+ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #F2F2F2; }
+ 
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

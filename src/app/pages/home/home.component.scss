@@ -1,0 +1,235 @@
+
+*{
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar{
+    width: 256px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    padding: 1rem 1.5rem;
+    background: #FFFFFF;
+    
+    box-shadow: 6px 0px 18px rgba(0, 0, 0, 0.06);
+}
+
+
+.brand-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand-flex span {
+    font-size: 18px;
+    color: #109CF1;
+}
+
+.brand-icons span{
+    font-size: 1.5rem;
+    margin-left: .5rem;
+}
+
+
+.sidebar-menu {
+    margin-top: 55px;
+}
+
+
+.sidebar-menu li {
+    margin-bottom: 19px;
+    
+}
+
+//dashboard, contacts and setting styles
+.sidebar-menu li a{
+
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    color: #334D6E;
+    display: flex;
+    align-items: center;
+    padding-bottom: 4px;
+}
+
+.sidebar-menu li a:hover{
+    color: #34AFF9;
+}
+
+.sidebar-menu li a:focus{
+    color: #098EDF;
+}
+
+
+.sidebar-menu li a span {
+    font-size: 1.5rem;
+    display: inline-block;
+    margin-right: .8rem;
+    
+    
+}
+
+.sidebar-menu li a span img {
+    width: 15px;
+    height: 15px;
+    margin-bottom: 4px;
+
+    color:  #C2CFE0;
+    box-sizing: border-box;
+    border-radius: 1px;
+    
+}
+
+.sidebar-setting-top-line {
+    position: fixed;
+    width: 256px;
+    border-top: 2.55px solid #EBEFF2;
+    top: 165px;
+    margin-left: 0px;
+}
+
+.sidebar-dashboard {
+   margin-top: 35px; 
+   margin-bottom: 20px;
+}
+
+
+
+
+header {
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #FFFFFF;
+    padding-left: 38.8px;
+    padding-right: 23px;
+
+}
+
+.header-bottom-line {
+    position: fixed;
+    width: 100%;
+    margin-top: 60px;
+    border: 0.01px solid #EBEFF2;
+}
+
+
+
+//label sidebar ın kapanmasını sağlıyor.
+.menu-toggle label {
+    height: 60px;
+    width: 60px;
+    display: grid;
+    place-items: center;
+    font-size: 14px; //search size değişimidir
+    border-radius: 50%;
+}
+
+.header-icons {
+    display: flex;
+    align-items: center;
+    
+}
+
+.search-menu{
+    display: flex;
+    align-items: center;
+}
+
+.search-bar img{
+    width: 15px;
+    height: 15px;
+}
+
+
+
+.search-button input {
+    border: none;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    margin-left: 15px;
+    color: #90A0B7;
+    padding: 5px;
+}
+
+input[type=text]:focus {
+    border: none;
+  }
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #90A0B7;
+    opacity: 1; /* Firefox */
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #90A0B7;
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: #90A0B7;
+  }
+
+.header-icons span {
+    display: inline-block;
+}
+
+.header-title {
+    
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    color: #192A3E;
+}
+
+.header-user-email {
+    
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 16px;
+    color: #90A0B7;
+    letter-spacing: 0.01em;
+    width: 146px;
+    height: 17px;
+}
+
+.header-user img{
+    border:none;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    margin-right: 9px;
+}
+
+.menu-toggle label:hover {
+    background: #efefef;
+}
+
+.main-content {
+    margin-left: 256px;
+}
+
+main {
+    padding-left: 36px;
+    padding-right: 38px;
+    padding-top: 35px;
+    background:#E5E5E5;
+
+}
+
+

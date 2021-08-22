@@ -1,0 +1,20 @@
+<div class="sidebar">
+    <div class="brand-flex">
+        <span>SaaS Kit</span>           
+    </div>   
+
+    <div class="sidebar-main">
+        <div class="sidebar-menu" >
+            <ul *ngFor="let menu of menuList">
+                <li>
+                    <a class="active" class="sidebar-dashboard" routerLink={{menu.link}} [routerLinkActiveOptions]="{exact:true}" routerLinkActive="active" [routerLinkActiveOptions]={exact:true} >
+                        
+                        <span>{{menu.title}}</span>
+                                                
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>

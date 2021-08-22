@@ -1,0 +1,85 @@
+.button{
+    
+    height: 46px;
+    background-color: #3988ff;
+    border: 1px solid #3988FF;
+    width: 100%;
+    border-radius: 8px;
+    box-sizing: border-box;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+
+    text-align: center;
+    color: #FFFFFF
+    
+}
+
+.link{
+    color: #3988FF;
+    border: none;
+    background-color: white;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+}
+
+.add-contact-button {
+    color: #FFFFFF;
+    background: #109CF1;
+    box-shadow: 0px 4px 10px rgba(16, 156, 241, 0.24);
+    border-radius: 4px;
+    outline: none;
+    width: 160px;
+    height: 42px;
+    border:none;
+
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 19px;
+    /* identical to box height */
+
+    text-align: center;
+}
+
+.add-contact-button:hover {
+    background: #34AFF9;
+    box-shadow: 0px 8px 16px rgba(52, 175, 249, 0.2);
+    border-radius: 4px;
+}
+
+.add-contact-button:active {
+    background: #098EDF;
+    box-shadow: 0px 2px 6px rgba(9, 142, 223, 0.3);
+    border-radius: 4px;
+}
+
+@media (max-width: 720px) { 
+    .button {
+        margin-bottom: 43px;
+    }
+    
+}
+
+.button:hover {
+    background-color: #0054D1;
+  }
+
+
+@media (prefers-color-scheme: dark) {
+ 
+    .link {
+        background-color: #2E2E2E;
+    }
+}
+
+
+
