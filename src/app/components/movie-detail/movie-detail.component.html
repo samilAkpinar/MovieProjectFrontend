@@ -1,0 +1,88 @@
+<div class="container">
+    <div class="row">
+
+        <div class="image col-lg-6">
+            <img class="card-img-top" src="https://image.tmdb.org/t/p/w500/{{getMovie.backdropPath}}" alt="Card image cap">
+        </div>
+
+        <div class="detail col-lg-6">
+            <div class="title">
+                <strong>Title</strong>
+            </div>
+            <div class="description">
+                <span>{{getMovie.title}}</span>
+            </div>
+
+            <div class="title">
+                <strong>Overview</strong>
+            </div>
+            <div class="description">
+                <span>{{getMovie.overview}}</span>
+            </div>
+        </div>
+        
+        <hr>
+
+        <div class="property col-lg-12">
+            <div>
+                <strong>Original Language: </strong>
+                <span>{{getMovie.originalLanguage}}</span>
+            </div>
+
+            <div>
+                <strong>Popularity: </strong>
+                <span>{{getMovie.popularity}}</span>
+            </div>
+
+            <div>
+                <strong>ReleaseDate: </strong>
+                <span>{{getMovie.releaseDate}}</span>
+            </div>
+
+            <div>
+                <strong>Runtime: </strong>
+                <span>{{getMovie.runtime}}</span>
+            </div>
+
+            <div>
+                <strong>Revenue: </strong>
+                <span>{{getMovie.revenue}}</span>
+            </div>
+
+            <div>
+                <strong>Genre: </strong>
+                <ul>
+                    <li *ngFor="let genre of genres">
+                        <span>{{genre.name}}</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <strong>Vote Average: </strong>
+                <span>{{getMovie.voteAverage}}</span>
+            </div>
+
+            <div>
+                <strong>Vote Count: </strong>
+                <span>{{getMovie.voteCount}}</span>
+            </div>
+            
+            <!-- burası başka bir yerden gelecek -->
+            <div>
+                <strong>Your Vote: </strong>
+                <span>-</span>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="vote col-lg-12">
+            <strong>Vote Movie</strong>
+            <hr>
+            <app-input class="vote-input" placeholder="vote movie"></app-input>
+            <app-button classItem="vote-movie-button" text="Send Vote"></app-button>
+        </div>
+
+    </div>
+</div>

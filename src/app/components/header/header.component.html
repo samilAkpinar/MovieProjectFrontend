@@ -6,11 +6,11 @@
     <div>
         <ul>
             <li>
-                <span class="header-title">Name Surname</span>
+                <span class="header-title">{{ user.fullName }}</span>
             </li>
             <li>
                 <div [matMenuTriggerFor]="menu" >
-                    <span class="header-user-email">{{ email }} email
+                    <span class="header-user-email">{{ user.email }}
                     <img class="header-dropdown-img" src="https://img.icons8.com/material-sharp/24/000000/sort-down.png"/>
                 </span>
                 </div>

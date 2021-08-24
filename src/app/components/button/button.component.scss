@@ -73,6 +73,38 @@
     background-color: #0054D1;
   }
 
+.detail-button {
+    background: #109CF1;
+    border: none;
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+} 
+
+.detail-button:hover {
+    background: #34AFF9;
+}
+
+.detail-button:active {
+    background: #098EDF;
+}
+
+.vote-movie-button {
+    background: #109CF1;
+    border: none;
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.vote-movie-button:hover {
+    background: #34AFF9;
+}
+
+.vote-movie-button:active {
+    background: #098EDF;
+}
 
 @media (prefers-color-scheme: dark) {
  

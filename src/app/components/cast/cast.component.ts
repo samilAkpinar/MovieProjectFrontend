@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CastService } from 'src/app/services/cast.service';
 
 @Component({
   selector: 'app-cast',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CastComponent implements OnInit {
 
-  constructor() { }
+  constructor(private cast:CastService) { }
+
+  castList:any;
 
   ngOnInit(): void {
+    this.cast.getAllCastList().subscribe(value => {
+      this.castList = value.data;
+
+    });
   }
 
 }

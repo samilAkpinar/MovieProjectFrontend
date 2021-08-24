@@ -15,45 +15,18 @@
 
 <div class="container">
     <div class="row">
-        <div class=" card-style col-lg-3 col-md-4 col-sm-6">
-            <div class="card">
-                <img class="card-img-top" src="..." alt="Card image cap">
+        <div class=" card-style col-lg-3 col-md-4 col-sm-12" *ngFor="let cast of castList">
+           
+          <div class="card">
+                <img class="card-img-top"  src="https://image.tmdb.org/t/p/w500{{ cast.profilePath }}" alt="cast profile">
                 <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                  <h3 class="card-title">{{ cast.name }}</h3>
+                  <hr>
+                  <p class="card-text"> <strong>Character:</strong>  {{ cast.character }}</p>
+                  <p class="card-text"> <strong>Popularity:</strong>  {{ cast.popularity }}</p>
+                  <p class="card-text"> <strong>Department:</strong>  {{ cast.knownForDepartment }}</p>
                 </div>
             </div>
-        </div>
-        <div class=" card-style col-lg-3 col-md-4 col-sm-6 ">
-            <div class="card">
-                <img class="card-img-top" src="..." alt="Card image cap">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="card-style col-lg-3 col-md-4 col-sm-6">
-            <div class="card" >
-                <img class="card-img-top" src="..." alt="Card image cap">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-              </div>
-        </div>
-        <div class="card-style col-lg-3 col-md-4 col-sm-6">
-            <div class="card" >
-                <img class="card-img-top" src="..." alt="Card image cap">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-              </div>
         </div>
     </div>
 </div>

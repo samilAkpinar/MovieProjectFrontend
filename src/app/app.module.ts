@@ -21,6 +21,7 @@ import { MoviesComponent } from './components/movies/movies.component';
 import { CastComponent } from './components/cast/cast.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MovieDetailComponent } from './components/movie-detail/movie-detail.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     MoviesComponent,
     CastComponent,
-    SearchInputComponent
+    SearchInputComponent,
+    MovieDetailComponent
   ],
   imports: [
     BrowserModule,

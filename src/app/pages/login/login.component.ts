@@ -4,6 +4,8 @@ import { User } from 'src/app/models/User';
 import { FormService } from 'src/app/services/form.service';
 import { SidebarMenuService } from 'src/app/services/sidebar-menu.service';
 
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   status!: boolean;
   token!: string;
-
+  user:any;
 
   constructor(
     private formService : FormService,
@@ -22,10 +24,11 @@ export class LoginComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-
+    
+    this.emailSend();
     this.status = true;
 
-    if(localStorage.getItem("session") != null ){
+    if(localStorage.getItem("jwt-token") != null ){
       
       this.route.navigate(['/home']);
     }
@@ -40,8 +43,14 @@ export class LoginComponent implements OnInit {
     this.status = false;
   }
 
+  message:any;
+  nonce:any;
+  path:any;
+  privateKey:any;
+
+
   emailSend():void{
-   
+
   }
 
   //login butonudur.
@@ -77,26 +86,20 @@ export class LoginComponent implements OnInit {
     this.formService.authenticate().subscribe(value => {
 
       console.log("jwt token değeri", value);
+      
+      localStorage.setItem("name-surname",value.data.name +" "+ value.data.surname)
+      localStorage.setItem("email",value.data.email);
+
       if(value.isSuccess == false){
         
         console.log("Email veya şifre hatalı");
         return value;
       }
-      //alınan jwt token değeri get-menu http ye istek atılır.
+
       localStorage.setItem("jwt-token",value.data.token); 
-      console.log("giriş başarılı", value.data.token);
-
-      console.log("giriş başarılı");
-
-      //eğer giriş başarılı ise get-menuye istek atılır. token değeri gönderilir.
-      // eğer get-menu true gelirse home sayfasına geçiş yapılır.
-       
+    
       this.route.navigate(['/home']);
      
-      
-        
-        
-
 
     });
 

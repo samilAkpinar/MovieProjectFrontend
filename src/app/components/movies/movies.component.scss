@@ -3,6 +3,7 @@
     margin-right: 10px;
     margin-bottom: 10px;
     padding: 10px;
+    border-radius: 7px;
 }
 
 .search-menu{
@@ -20,7 +21,7 @@
     font-family: Poppins;
     font-style: normal;
     font-weight: normal;
-    font-size: 12px;
+    font-size: 15px;
     margin-left: 15px;
     color: #90A0B7;
     padding: 5px;
@@ -41,4 +42,14 @@ input[type=text]:focus {
   
   ::-ms-input-placeholder { /* Microsoft Edge */
     color: #90A0B7;
+  }
+
+
+  .card-body p {
+    
+      width: px;
+      overflow: hidden; /* taşanları gizle */
+      white-space: nowrap; /* alt satıra hiç inme */
+      text-overflow: ellipsis; /* eğer uzunsa üç nokta koy */
+  
   }

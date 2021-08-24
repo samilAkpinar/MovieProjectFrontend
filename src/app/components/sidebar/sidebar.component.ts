@@ -21,10 +21,8 @@ export class SidebarComponent implements OnInit {
     
     //sayfa yenilendiği için link kayboluyor. Bu yüzden localstorage veya cookie ye kayıt et.
 
-    
-
     this.menu.getMenuList(this.token).subscribe(values => {
-      console.log("get menu değeri: " , values.isSuccess)
+      //console.log("get menu değeri: " , values.isSuccess)
       
       if(values.isSuccess == false) {
         console.log("menu listesi getirilemedi")
@@ -33,8 +31,6 @@ export class SidebarComponent implements OnInit {
       this.menuList = values.data;       
       
     });
-    
-  
     
     
   }
