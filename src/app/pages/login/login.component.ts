@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     this.emailSend();
     this.status = true;
 
-    if(localStorage.getItem("jwt-token") != null ){
+    if(localStorage.getItem("jwt-token") != null && localStorage.getItem("session") != null ){
       
       this.route.navigate(['/home']);
     }
@@ -43,25 +43,20 @@ export class LoginComponent implements OnInit {
     this.status = false;
   }
 
-  message:any;
-  nonce:any;
-  path:any;
-  privateKey:any;
-
-
+  //forgot password
   emailSend():void{
 
   }
 
-  //login butonudur.
+  //login button.
   createTokenButton():any {
 
-    //Bu jwt token olacak.
-    var token = localStorage.getItem("jwt-token");
     
-    //local srorage da jwt token var 
-    if( token != null){
-      this.formService.createSession(token).subscribe(data => {
+    var movieToken = localStorage.getItem("movie_token");
+    
+    //local storage da 
+    if( movieToken != null){
+      this.formService.createSession(movieToken).subscribe(data => {
         var obj = JSON.parse(data);
 
         console.log("session success değeri",obj);
@@ -85,21 +80,40 @@ export class LoginComponent implements OnInit {
     //sonuç burada döner.
     this.formService.authenticate().subscribe(value => {
 
-      console.log("jwt token değeri", value);
+      if(value.isSuccess == false){
+        
+        console.log("Invalid email and password");
+        return value;
+      }
+
+      //create movie token
+      this.formService.createMovieToken().subscribe(data => {
+        
+        console.log("Movie token value: " , data.request_token);
+        localStorage.setItem("movie_token",data.request_token);
+       
+        //email validation
+        this.formService.validationEmail(data.request_token).subscribe(email => {
+          
+          //string value
+          var obj = JSON.parse(email);
+
+          if(obj.data){
+            console.log("email send.");
+
+          }else{
+
+            console.log("Email didn't send");
+          }
+
+        });
+      });
+
       
       localStorage.setItem("name-surname",value.data.name +" "+ value.data.surname)
       localStorage.setItem("email",value.data.email);
 
-      if(value.isSuccess == false){
-        
-        console.log("Email veya şifre hatalı");
-        return value;
-      }
-
       localStorage.setItem("jwt-token",value.data.token); 
-    
-      this.route.navigate(['/home']);
-     
 
     });
 

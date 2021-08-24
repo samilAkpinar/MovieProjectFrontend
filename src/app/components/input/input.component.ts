@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormService } from 'src/app/services/form.service';
+import { MovieService } from 'src/app/services/movie.service';
 
 @Component({
   selector: 'app-input',
@@ -17,7 +18,10 @@ export class InputComponent implements OnInit {
   labelState!: boolean; //input focus durumundaki style değişimidir.
   value: string = "";//formdan gelen email ve şifre değerleridir.
 
-  constructor(private formService: FormService) { }
+  constructor(
+    private formService: FormService,
+    private voteValue: MovieService
+    ) { }
 
   ngOnInit(): void {
     this.labelState = false;
@@ -40,7 +44,15 @@ export class InputComponent implements OnInit {
 
       this.formService.addPassword(this.value);
 
-    }else if(this.type == "search"){
+    }else if(this.type == "votedMovie"){
+
+      if ( +this.value > 0 && +this.value < 11){
+        this.voteValue.addVoteValue(+this.value);
+      
+      }else{
+        console.log("girilen değer 1 ile 10 arasında olmalı");
+      }
+      
 
     }else{
 

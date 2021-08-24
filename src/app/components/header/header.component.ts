@@ -33,6 +33,8 @@ export class HeaderComponent implements OnInit {
   
   logout():void{
     localStorage.removeItem("jwt-token");
+    localStorage.removeItem("movie_token");
+    localStorage.removeItem("session");
     this.route.navigate(['/']);
   }
 

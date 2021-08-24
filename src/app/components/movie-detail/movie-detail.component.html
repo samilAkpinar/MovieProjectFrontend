@@ -6,7 +6,7 @@
         </div>
 
         <div class="detail col-lg-6">
-            <div class="title">
+            <div class="title">         
                 <strong>Title</strong>
             </div>
             <div class="description">
@@ -71,7 +71,7 @@
             <!-- burası başka bir yerden gelecek -->
             <div>
                 <strong>Your Vote: </strong>
-                <span>-</span>
+                <span>{{userVote}}</span>
             </div>
         </div>
 
@@ -80,8 +80,8 @@
         <div class="vote col-lg-12">
             <strong>Vote Movie</strong>
             <hr>
-            <app-input class="vote-input" placeholder="vote movie"></app-input>
-            <app-button classItem="vote-movie-button" text="Send Vote"></app-button>
+            <app-input class="vote-input" placeholder="vote movie" type="votedMovie"></app-input>
+            <app-button classItem="vote-movie-button" text="Send Vote" (click)="sendVoteMovie()"></app-button>
         </div>
 
     </div>

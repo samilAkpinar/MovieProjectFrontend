@@ -27,13 +27,15 @@ export class FormService {
 
     const user = new User(1,"","",this.TxtEmail,this.TxtPassword,"","",0);
 
-    //jwt token burada gönderilmesi gerekli
-    //return: baseresponse
+    //create jwt token
     return this.http.post("https://localhost:44389/api/v1/authentication/authenticate",user);
 
-    // film token burada 
-    //return this.http.get("https://localhost:44389/api/v1/authentication/create-token");
+  }
 
+  createMovieToken():Observable<any> {
+
+    //create movie token
+    return this.http.get("https://localhost:44389/api/v1/authentication/create-token");
   }
 
   
