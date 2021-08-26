@@ -22,6 +22,9 @@ import { CastComponent } from './components/cast/cast.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MovieDetailComponent } from './components/movie-detail/movie-detail.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SignupButtonComponent } from './partial/signup-button/signup-button.component';
+import { SignupFormComponent } from './partial/signup-form/signup-form.component';
 
 
 @NgModule({
@@ -41,7 +44,9 @@ import { MovieDetailComponent } from './components/movie-detail/movie-detail.com
     MoviesComponent,
     CastComponent,
     SearchInputComponent,
-    MovieDetailComponent
+    MovieDetailComponent,
+    SignupButtonComponent,
+    SignupFormComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +54,8 @@ import { MovieDetailComponent } from './components/movie-detail/movie-detail.com
     MatMenuModule,
     BrowserAnimationsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

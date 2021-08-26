@@ -27,18 +27,13 @@ export class MovieDetailComponent implements OnInit {
     this.movieId = id;
 
     this.movie.getMovieById(id).subscribe(value => {
-      //console.log("get movie by id: ", value.data);
+     //console.log("get movie by id: ", value.data);
 
       this.getMovie = value.data;
 
       this.genres = value.data.genres;
     })
 
-
-    //get-vote- işlemi ile kullanıcının verdiği puan buradan alınır.
-    //bunun için film token session değerleri alınması gereklidir.
-    
-    console.log("session ", this.sessionId);
     
     this.movie.getUserVote(id, this.sessionId).subscribe(value => {
       
@@ -56,9 +51,10 @@ export class MovieDetailComponent implements OnInit {
 
   //inputa girilen değeri backente kayıt eder.
   sendVoteMovie() {
+    
     this.movie.putVotedMovie(this.movieId,this.sessionId).subscribe(data => {
 
-      console.log("vote data: "+data.success)
+      //console.log("vote data: "+data.success)
 
       if(data.success){
 
@@ -70,11 +66,12 @@ export class MovieDetailComponent implements OnInit {
           }else {
     
             this.userVote = value.rated.value;
+            this.ngOnInit();
           }
         });
 
       }else{
-        console.log("filme not verilememiştir.")
+        this.userVote = "-";
       }
 
     });

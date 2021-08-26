@@ -1,4 +1,4 @@
 <div>
     <label *ngIf="label" class="label" [ngClass]="{'label-focus': labelState}" >{{ label }}</label>
-    <input  [(ngModel)]="value" type="{{type}}" class="{{class}}" placeholder={{placeholder}} (click)="onFocus()" (blur)="onBlur()" >
+    <input  [(ngModel)]="value" type="{{type}}" class="{{class}}" placeholder={{placeholder}} (click)="onFocus()" (blur)="onBlur()" #text  (keyup)="sendData(text.value)" >
 </div>

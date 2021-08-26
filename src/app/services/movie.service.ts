@@ -1,14 +1,18 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { empty, Observable } from 'rxjs';
 import { RateMovie } from '../models/rateMovie';
+import { SnackbarService } from './snackbar.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MovieService {
 
-  constructor(private http:HttpClient) { }
+  constructor(
+    private http:HttpClient,
+    private snackbarService: SnackbarService
+    ) { }
   
   token:any = localStorage.getItem("jwt-token");
   voteValue!:number;
@@ -31,11 +35,15 @@ export class MovieService {
   }
 
   addVoteValue(voteValue:number){
+
     this.voteValue = voteValue;
+
+    
   }
 
   putVotedMovie(movieId:number, sessionId:string):Observable<any> {
 
+    
     const rateMovie = new RateMovie();
     rateMovie.MovieId = movieId;
     rateMovie.SessionId = sessionId;
@@ -43,6 +51,20 @@ export class MovieService {
     rateMovie.Value = this.voteValue;    
     rateMovie.Note = "";
     
-    return this.http.post("https://localhost:44389/api/v1/movies/rate-movie", rateMovie , {headers: new HttpHeaders().set('Authorization', 'Bearer '+this.token)})
+
+    if ( this.voteValue > 0 && this.voteValue < 11){
+
+      this.snackbarService.createSnackbar("success","Your vote successfully update")
+      return this.http.post("https://localhost:44389/api/v1/movies/rate-movie", rateMovie , {headers: new HttpHeaders().set('Authorization', 'Bearer '+this.token)})
+      
+      
+    }else{
+
+      this.snackbarService.createSnackbar("error","Error, The entered value must be between 1 and 10")
+       return empty();
+    }
+
+    
+    
   }
 }

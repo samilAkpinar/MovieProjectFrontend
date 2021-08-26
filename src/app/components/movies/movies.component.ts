@@ -14,21 +14,38 @@ export class MoviesComponent implements OnInit {
     private router: Router
     ) { }
 
-  movieList:any;
+  movieList:any[] = [];
 
   ngOnInit(): void {
     //servise gidip backend alanına filmleri getirecek.
 
     this.movies.getAllMovieList().subscribe(value =>{
-      console.log("film değeri: ", value.data);
+      //console.log("film değeri: ", value.data);
       this.movieList = value.data
-    })
+
+    });
+
   }
 
   movieDetail(movieId:number) {
     
-    console.log("movie id ", movieId);
+    //console.log("movie id ", movieId);
     this.router.navigate(['movies/' + movieId ]);
+  }
+
+
+  Search(movieTitle:string){
+    if(movieTitle != ""){
+
+      this.movieList = this.movieList.filter(res => {
+        return res.title.toLocaleLowerCase().match(movieTitle.toLocaleLowerCase());
+      });
+
+    }else if (movieTitle == ""){
+      this.ngOnInit();
+    }
+
+    
   }
 
 }

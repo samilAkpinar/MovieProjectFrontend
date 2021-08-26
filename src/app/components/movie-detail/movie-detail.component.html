@@ -2,7 +2,8 @@
     <div class="row">
 
         <div class="image col-lg-6">
-            <img class="card-img-top" src="https://image.tmdb.org/t/p/w500/{{getMovie.backdropPath}}" alt="Card image cap">
+            <img class="card-img-top" *ngIf="getMovie.backdropPath"  src="https://image.tmdb.org/t/p/w500/{{ getMovie.backdropPath }}" alt="Card image cap" />
+            <!--<img class="card-img-top" *ngIf="!getMovie.backdropPath"  src="../../../assets/empty-profile.png" alt="Card image cap"> -->
         </div>
 
         <div class="detail col-lg-6">
@@ -71,7 +72,7 @@
             <!-- burası başka bir yerden gelecek -->
             <div>
                 <strong>Your Vote: </strong>
-                <span>{{userVote}}</span>
+                <span >{{userVote}}</span>
             </div>
         </div>
 
