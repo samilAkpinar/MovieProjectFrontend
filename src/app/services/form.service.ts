@@ -1,17 +1,26 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CreateSession } from '../models/CreateSession';
+import { ResetPassword } from '../models/ResetPassword';
+import { SignUp } from '../models/SignUp';
 import { User } from '../models/User';
 import { ValidationEmail } from '../models/ValidationEmail';
+import { SnackbarService } from './snackbar.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FormService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private snacbar : SnackbarService
+    
+    ) { }
 
+  TxtName:string="";
+  TxtSurname:string="";
   TxtEmail:string ="";
   TxtPassword:string="";
 
@@ -23,12 +32,52 @@ export class FormService {
     this.TxtPassword = password;
   }
 
+  addName(name:string){
+    this.TxtName = name;
+  }
+
+  addSurname(surname:string){
+    this.TxtSurname = surname;
+  }
+
+  sendEmail():Observable<any> {
+    
+    return this.http.get("https://localhost:44389/api/v1/authentication/reset-password?email="+this.TxtEmail);
+  }
+
+  sendNewPassword(email:string):Observable<any>{
+
+    
+    const reset = new ResetPassword();
+    reset.email = email;
+    reset.password = this.TxtPassword;
+
+    return this.http.post("https://localhost:44389/api/v1/authentication/update-password",reset); 
+  }
+
+  signUp():Observable<any> {
+
+      const signUp = new SignUp(0,this.TxtName,this.TxtSurname,this.TxtEmail,this.TxtPassword,3);
+      return this.http.post("https://localhost:44389/api/v1/authentication/register",signUp)
+    
+          
+  }
+
   authenticate():Observable<any> {
 
-    const user = new User(1,"","",this.TxtEmail,this.TxtPassword,"","",0);
+    if(this.TxtEmail == "" || this.TxtPassword == ""){
+      
+      this.snacbar.createSnackbar("error","All input requried");
+      return new Observable<any>();
 
-    //create jwt token
-    return this.http.post("https://localhost:44389/api/v1/authentication/authenticate",user);
+    }else{
+
+      const user = new User(1,"","",this.TxtEmail,this.TxtPassword,"","",3);
+
+      //create jwt token
+      return this.http.post("https://localhost:44389/api/v1/authentication/authenticate",user);
+    }
+    
 
   }
 

@@ -1,8 +1,8 @@
 .button{
     
     height: 46px;
-    background-color: #3988ff;
-    border: 1px solid #3988FF;
+    background-color: #109CF1;
+    border: 1px solid #109CF1;
     width: 100%;
     border-radius: 8px;
     box-sizing: border-box;
@@ -17,6 +17,14 @@
     color: #FFFFFF
     
 }
+.button:hover {
+    background-color: #34AFF9;
+  }
+  
+  .button:active {
+    background-color: #098EDF;;
+  }
+
 
 .link{
     color: #3988FF;
@@ -69,9 +77,7 @@
     
 }
 
-.button:hover {
-    background-color: #0054D1;
-  }
+
 
 .detail-button {
     background: #109CF1;

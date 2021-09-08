@@ -28,7 +28,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     
-    this.emailSend();
     this.status = true;
     this.signUpStatus = false;
 
@@ -51,7 +50,16 @@ export class LoginComponent implements OnInit {
 
   //forgot password
   emailSend():void{
+    this.formService.sendEmail().subscribe(value =>{
 
+      if(value.data){
+
+        this.snackbarService.createSnackbar("info","Email sent successfully");
+      }else{
+        
+        this.snackbarService.createSnackbar("info","Failed to send email");
+      }
+    })
   }
 
   //login button.
@@ -72,7 +80,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem("session",obj.session_id);
 
           this.route.navigate(['/home']);
-          this.snackbarService.createSnackbar('success',"Login successful")
+          this.snackbarService.createSnackbar('success',"Login successfull")
           
         }else{
 
@@ -132,5 +140,21 @@ export class LoginComponent implements OnInit {
 
   SignUpPageShow(){
     this.signUpStatus = true;
+  }
+
+  signUp(){
+    this.formService.signUp().subscribe(data => {
+
+      console.log("kullanıcı kayıt sonucu ", data);
+
+      if(data.isSuccess){
+
+        this.snackbarService.createSnackbar('info','User save')
+      }else{
+
+        this.snackbarService.createSnackbar('error',"User didn't save")
+      }
+      
+    });
   }
 }

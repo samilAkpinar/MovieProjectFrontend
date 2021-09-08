@@ -33,7 +33,7 @@
 
                 <app-login-button  *ngIf="status && !signUpStatus" (click)="createTokenButton()"></app-login-button>
                 
-                <app-signup-button  *ngIf="status && signUpStatus" (click)="createTokenButton()"></app-signup-button>
+                <app-signup-button  *ngIf="status && signUpStatus" (click)="signUp()"></app-signup-button>
 
                 <div class="sign-up" *ngIf="status && !signUpStatus"> 
                     <app-button  classItem="link"  text="Sign Up?" (click) ="SignUpPageShow()"></app-button>

@@ -72,28 +72,36 @@ export class InputComponent implements OnInit {
   }
 
   sendData(data:string){
-    if(this.type == "email"){
+    if(this.type == "email" && data != ''){
       
-      console.log("email", data);
+      //console.log("email girdi", data);
       this.formService.addEmail(data);
 
-    }else if(this.type == "password"){
+    }else if(this.type == "password" && data != ''){
 
-      console.log("password", data);
+      //console.log("password", data);
       this.formService.addPassword(data);
 
-    }else if(this.type == "text"){
+    }else if(this.type == "name" && data != ''){
 
-      console.log("isim soyisim", data);
+      //console.log("isim", data);
+      this.formService.addName(data);
       
-    }else if(this.type == "votedMovie"){
+    }else if(this.type == "surname" && data != ''){
+
+      //console.log("surname", data);
+      this.formService.addSurname(data);
+      
+    }else if(this.type == "votedMovie" && data != ''){
 
       this.voteValue.addVoteValue(+data);
       
     }else{
 
-      this.formService.addEmail('');
-      this.formService.addPassword('');
+      this.formService.addName("");
+      this.formService.addSurname("");
+      this.formService.addEmail("");
+      this.formService.addPassword("");
     }
   }
 

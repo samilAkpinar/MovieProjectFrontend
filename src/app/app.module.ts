@@ -25,6 +25,9 @@ import { MovieDetailComponent } from './components/movie-detail/movie-detail.com
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SignupButtonComponent } from './partial/signup-button/signup-button.component';
 import { SignupFormComponent } from './partial/signup-form/signup-form.component';
+import { ForgottenPasswordComponent } from './pages/forgotten-password/forgotten-password.component';
+import { ResetPasswordFormComponent } from './partial/reset-password-form/reset-password-form.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 
 @NgModule({
@@ -46,7 +49,10 @@ import { SignupFormComponent } from './partial/signup-form/signup-form.component
     SearchInputComponent,
     MovieDetailComponent,
     SignupButtonComponent,
-    SignupFormComponent
+    SignupFormComponent,
+    ForgottenPasswordComponent,
+    ResetPasswordFormComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
