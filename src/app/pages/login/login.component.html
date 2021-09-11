@@ -1,10 +1,12 @@
-<div class="container h-100" >
+<div class="container h-100">
     
     <div class="row h-100 justify-content-center align-items-xl-center">
         
         <div class="card-style">
-                        
-            <div class="">
+            <div class="spinner" *ngIf="showSpinner">
+                <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+              </div>  
+
                 <!-- <app-image></app-image> -->     
                 
                 <div class="main-text-center main-text-style">
@@ -43,7 +45,8 @@
                     <app-button classItem="link"  text="or Log In" (click) ="ngOnInit()"></app-button>
                 </div>
 
-            </div>
+            
         </div>
+        
     </div>
 </div>

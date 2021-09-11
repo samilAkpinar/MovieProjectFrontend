@@ -1,19 +1,25 @@
+
+
 <div class="sidebar">
     <div class="brand-flex">
-        <span>Movie World</span>           
-    </div>   
-
+        <button [routerLink]="['/home/upcoming']"  >Movie World</button>           
+    </div>  
+    
     <div class="sidebar-main">
         <div class="sidebar-menu" >
+
+            <div class="spinner" *ngIf="showSpinner">
+                <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </div>
+
             <ul *ngFor="let menu of menuList">
                 <li>
                     <a class="active" class="sidebar-dashboard" routerLink={{menu.link}} [routerLinkActiveOptions]="{exact:true}" routerLinkActive="active" [routerLinkActiveOptions]={exact:true} >
                         
                         <span>{{menu.title}}</span>
-                                                
+                                              
                     </a>
                 </li>
-                
             </ul>
         </div>
     </div>

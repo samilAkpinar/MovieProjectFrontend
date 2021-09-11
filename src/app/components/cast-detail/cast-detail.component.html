@@ -1,0 +1,54 @@
+
+<div class="spinner" *ngIf="showSpinner">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+
+<div class="container">
+    <div class="row">
+
+        <div class="image col-lg-4">
+            <img class="card-img-top" *ngIf="cast.profilePath" src="https://image.tmdb.org/t/p/w500/{{ cast.profilePath }}"/>
+            <img class="card-img-top" *ngIf="!cast.profilePath" src="../../../assets/empty-profile.png" alt="cast profile">
+        </div>
+
+        <div class="detail col-lg-8">
+            <div class="title">         
+                <strong>Name</strong>
+            </div>
+            <div class="description">
+                <span>{{ cast.name }}</span>
+            </div>
+
+            <div class="title">
+                <strong>Character</strong>
+            </div>
+            <div class="description">
+                <span>{{ cast.character }}</span>
+            </div>
+
+            <div class="title">
+                <strong>Popularity</strong>
+            </div>
+            <div class="description">
+                <span>{{ cast.popularity }}</span>
+            </div>
+
+            <div class="title">
+                <strong>Known For Department</strong>
+            </div>
+            <div class="description">
+                <span>{{ cast.knownForDepartment }}</span>
+            </div>
+
+            <div class="title">
+                <strong>Gender</strong>
+            </div>
+            <div class="description">
+                <span>{{ gender }}</span>
+            </div>
+        </div>
+        
+        <hr>
+
+    </div>
+</div>

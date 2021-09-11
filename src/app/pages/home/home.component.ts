@@ -5,21 +5,18 @@ import { SnackbarService } from 'src/app/services/snackbar.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+  pageTitle: string = 'Welcome to the FilmWorld !!';
 
-  constructor(
-    private route:Router,
-  
-    ) { }
+  constructor(private route: Router) {}
 
   ngOnInit(): void {
-    if(localStorage.getItem("jwt-token") == null || localStorage.getItem("movie_token") == null ){
-      
-      this.route.navigate(['/']);
+    this.route.navigate(['/home/upcoming']);
 
-    }
+     if (localStorage.getItem('session') == null) {
+       this.route.navigate(['/']);
+     }
   }
-
 }

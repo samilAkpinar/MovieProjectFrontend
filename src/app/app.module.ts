@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Pipe } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -28,7 +28,10 @@ import { SignupFormComponent } from './partial/signup-form/signup-form.component
 import { ForgottenPasswordComponent } from './pages/forgotten-password/forgotten-password.component';
 import { ResetPasswordFormComponent } from './partial/reset-password-form/reset-password-form.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-
+import { WelcomeComponent } from './components/welcome/welcome.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { CastDetailComponent } from './components/cast-detail/cast-detail.component';
+import { SafePipe } from './safe.pipe';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,11 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     SignupFormComponent,
     ForgottenPasswordComponent,
     ResetPasswordFormComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    WelcomeComponent,
+    CastDetailComponent,
+    SafePipe,
+
   ],
   imports: [
     BrowserModule,
@@ -61,9 +68,10 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatProgressBarModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

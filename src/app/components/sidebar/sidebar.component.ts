@@ -1,4 +1,3 @@
-import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { SidebarMenuService } from 'src/app/services/sidebar-menu.service';
 
@@ -15,11 +14,12 @@ export class SidebarComponent implements OnInit {
 
     menuList:any;
     token:any = localStorage.getItem("jwt-token");
+    showSpinner: Boolean = false;
     
 
   ngOnInit(): void {
     
-    //sayfa yenilendiği için link kayboluyor. Bu yüzden localstorage veya cookie ye kayıt et.
+    this.showSpinner = true;
 
     this.menu.getMenuList(this.token).subscribe(values => {
       //console.log("get menu değeri: " , values.isSuccess)
@@ -28,8 +28,9 @@ export class SidebarComponent implements OnInit {
         console.log("menu listesi getirilemedi")
       }
 
-      this.menuList = values.data;       
-      
+      this.menuList = values.data; 
+      this.showSpinner = false;
+
     });
     
     

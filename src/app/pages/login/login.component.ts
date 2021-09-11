@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from 'src/app/models/User';
 import { FormService } from 'src/app/services/form.service';
-import { SidebarMenuService } from 'src/app/services/sidebar-menu.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 
 
@@ -18,10 +16,10 @@ export class LoginComponent implements OnInit {
   signUpStatus!: boolean;
   token!: string;
   user:any;
+  showSpinner: boolean = false;
 
   constructor(
     private formService : FormService,
-    private sidebarMenu : SidebarMenuService,
     private route:Router,
     private snackbarService: SnackbarService
     ) { }
@@ -31,11 +29,8 @@ export class LoginComponent implements OnInit {
     this.status = true;
     this.signUpStatus = false;
 
-    if(localStorage.getItem("jwt-token") != null && localStorage.getItem("session") != null ){
-      
+    if(localStorage.getItem("session") != null ){
       this.route.navigate(['/home']);
-      this.snackbarService.createSnackbar('success',"Login successful")
-
     }
 
   }
@@ -50,6 +45,9 @@ export class LoginComponent implements OnInit {
 
   //forgot password
   emailSend():void{
+
+    this.showSpinner = true;
+
     this.formService.sendEmail().subscribe(value =>{
 
       if(value.data){
@@ -59,19 +57,40 @@ export class LoginComponent implements OnInit {
         
         this.snackbarService.createSnackbar("info","Failed to send email");
       }
-    })
+
+    });
+    this.showSpinner = false;
   }
 
   //login button.
   createTokenButton():any {
 
-    
-    var movieToken = localStorage.getItem("movie_token");
-    
-    //local storage da 
-    if( movieToken != null){
-      this.formService.createSession(movieToken).subscribe(data => {
-        var obj = JSON.parse(data);
+    this.showSpinner = true;
+
+    this.formService.authenticate().subscribe(value => {
+
+      
+      if(value.isSuccess == false){
+
+        this.snackbarService.createSnackbar('error',"Invalid email and password")
+        this.showSpinner = false;
+        return value;
+      
+      }
+
+      //create movie token
+      this.formService.createMovieToken().subscribe(data => {
+        
+        //console.log("Movie token value: " , data.request_token);
+       
+       this.formService.createSessionWithLogin(data.request_token).subscribe(sessionWithLogin =>{
+        
+        //console.log("session with login değeridir: ",sessionWithLogin.data.request_token);
+      
+        this.formService.createSession(sessionWithLogin.data.request_token).subscribe(session =>{
+
+          //session üretilmiştir.
+          var obj = JSON.parse(session);
 
         //console.log("session success değeri",obj);
         
@@ -79,63 +98,27 @@ export class LoginComponent implements OnInit {
           
           localStorage.setItem("session",obj.session_id);
 
+          this.snackbarService.createSnackbar('success',"Login successfully")
           this.route.navigate(['/home']);
-          this.snackbarService.createSnackbar('success',"Login successfull")
-          
+        
         }else{
 
           this.snackbarService.createSnackbar('error',"Login failed")
         }
 
-      });
-      
-      return 1;
-    }
-
-    //email ve şifre değerini backend alanına gönderir.
-    //sonuç burada döner.
-    this.formService.authenticate().subscribe(value => {
-
-      if(value.isSuccess == false){
         
-        this.snackbarService.createSnackbar('error',"Invalid email and password")
-        return value;
-      }
-
-      //create movie token
-      this.formService.createMovieToken().subscribe(data => {
-        
-        //console.log("Movie token value: " , data.request_token);
-        localStorage.setItem("movie_token",data.request_token);
-       
-        //email validation
-        this.formService.validationEmail(data.request_token).subscribe(email => {
-          
-          //string value
-          var obj = JSON.parse(email);
-
-          if(obj.data){
-            this.snackbarService.createSnackbar('success',"Your email send")
-            
-
-          }else{
-
-            this.snackbarService.createSnackbar('error',"Your email didn't send")
-            
-          }
 
         });
+       });
+        
       });
 
-      
+      this.showSpinner = false;
       localStorage.setItem("name-surname",value.data.name +" "+ value.data.surname)
       localStorage.setItem("email",value.data.email);
-
       localStorage.setItem("jwt-token",value.data.token); 
 
     });
-
-    return 0;
   }
 
   SignUpPageShow(){
@@ -143,17 +126,22 @@ export class LoginComponent implements OnInit {
   }
 
   signUp(){
+    this.showSpinner = true;
+
     this.formService.signUp().subscribe(data => {
 
-      console.log("kullanıcı kayıt sonucu ", data);
+      //console.log("kullanıcı kayıt sonucu ", data);
 
       if(data.isSuccess){
 
         this.snackbarService.createSnackbar('info','User save')
+        
       }else{
 
         this.snackbarService.createSnackbar('error',"User didn't save")
       }
+
+      this.showSpinner = false;
       
     });
   }

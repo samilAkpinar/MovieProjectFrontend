@@ -40,35 +40,6 @@ export class InputComponent implements OnInit {
     this.labelState = false;
     //console.log(this.value);
 
-    /*
-
-    if(this.type == "email"){
-      
-      this.formService.addEmail(this.value);
-
-    }else if(this.type == "password"){
-
-      this.formService.addPassword(this.value);
-
-    }else if(this.type == "votedMovie"){
-
-      if ( +this.value > 0 && +this.value < 11){
-        this.snackbarService.createSnackbar("success","Your vote successfully update")
-        this.voteValue.addVoteValue(+this.value);
-        
-      
-      }else{
-        this.snackbarService.createSnackbar("error","Error, The entered value must be between 1 and 10")
-      }
-      
-
-    }else{
-
-      this.formService.addEmail('');
-      this.formService.addPassword('');
-    }
-
-    */
   }
 
   sendData(data:string){

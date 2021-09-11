@@ -8,14 +8,19 @@ import { CastService } from 'src/app/services/cast.service';
 })
 export class CastComponent implements OnInit {
 
+  castList:any[] = [];
+  showSpinner: boolean = false;
+
   constructor(private cast:CastService) { }
 
-  castList:any[] = [];
-
   ngOnInit(): void {
-    this.cast.getAllCastList().subscribe(value => {
-      this.castList = value.data;
+    this.showSpinner = true;
 
+    this.cast.getAllCastList().subscribe(value => {
+
+      this.castList = value.data;
+      console.log("castList",value.data);
+      this.showSpinner = false;
     });
   }
 

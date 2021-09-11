@@ -64,7 +64,18 @@ export class MovieService {
        return empty();
     }
 
-    
-    
   }
+
+  
+  getUpcomingMovies(page:number):Observable<any> {
+    
+    return this.http.get("https://localhost:44389/api/v1/movies/upcoming-movies?page="+page, {headers: new HttpHeaders().set('Authorization', 'Bearer '+this.token)})
+  }
+
+  getMovieVideoById(movieId:number):Observable<any>{
+
+    return this.http.get("https://localhost:44389/api/v1/movies/get-movie-video-by-id?movieId="+movieId, {headers: new HttpHeaders().set('Authorization', 'Bearer '+this.token)});
+  
+  }
+
 }

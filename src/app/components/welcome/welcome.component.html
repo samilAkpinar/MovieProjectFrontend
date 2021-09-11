@@ -1,0 +1,38 @@
+
+  <div class="menu-toggle">
+    <div class="search-menu">
+             
+         <div class="search-bar">
+            <img src="https://img.icons8.com/material-outlined/24/000000/search--v1.png"/>
+        </div>
+        
+        <div class="search-button">
+           <!-- <app-input class="search-input" placeholder="Movie Name" ></app-input> -->
+            <input class="search-input" type="text" #searchText  (keyup)="Search(searchText.value)"  placeholder="Upcoming Movie Name">
+            
+        </div>
+    </div>
+  </div>
+
+  <div class="spinner" *ngIf="showSpinner">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+  
+  
+  <div class="container">
+      <div class="row" >
+        <div class=" card-style col-lg-4 col-md-6 col-sm-12" *ngFor="let movie of UpcomingMovieList" >
+  
+            <div class="card">
+                <img class="card-img-top" *ngIf="movie.backdropPath" src="https://image.tmdb.org/t/p/w500{{ movie.backdropPath }}" alt="Card image cap">
+                <img class="card-img-top" *ngIf="!movie.backdropPath" src="../../../assets/empty-movie.png" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">{{ movie.title }}</h5>
+                  <p class="card-text">{{ movie.overview }}</p>
+                  <app-button classItem="detail-button" text="Go To Detail"  routerLink="/home/movie/detail/{{ movie.movieId }}"></app-button>
+  
+                </div>
+            </div>
+         </div>
+      </div>
+  </div>

@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CreateSession } from '../models/CreateSession';
 import { ResetPassword } from '../models/ResetPassword';
+import { SessionWithLogin } from '../models/sessionWithLogin';
 import { SignUp } from '../models/SignUp';
 import { User } from '../models/User';
 import { ValidationEmail } from '../models/ValidationEmail';
@@ -65,26 +66,27 @@ export class FormService {
 
   authenticate():Observable<any> {
 
-    if(this.TxtEmail == "" || this.TxtPassword == ""){
-      
-      this.snacbar.createSnackbar("error","All input requried");
-      return new Observable<any>();
-
-    }else{
-
       const user = new User(1,"","",this.TxtEmail,this.TxtPassword,"","",3);
 
       //create jwt token
       return this.http.post("https://localhost:44389/api/v1/authentication/authenticate",user);
-    }
     
-
   }
 
   createMovieToken():Observable<any> {
 
     //create movie token
     return this.http.get("https://localhost:44389/api/v1/authentication/create-token");
+  }
+
+  createSessionWithLogin(request_token:string):Observable<any> {
+
+    const sessionWithLogin = new SessionWithLogin();
+    sessionWithLogin.username = "samilakpinar";
+    sessionWithLogin.password = "Ad15091978"
+    sessionWithLogin.request_token = request_token;
+
+    return this.http.post("https://localhost:44389/api/v1/authentication/create-session-with-login",sessionWithLogin);
   }
 
   

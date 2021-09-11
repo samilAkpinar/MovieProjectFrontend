@@ -1,0 +1,81 @@
+
+.card{
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 7px;
+  margin-top: 20px;
+}
+.card-title{
+font-size: 18px;;
+}
+
+.search-input {
+border: 1px solid black;
+padding-left: 5px;
+margin-left: 15px;
+padding: 6px;
+box-sizing: border-box;
+border-radius: 8px;
+}
+
+.search-input:focus {
+outline: none;
+background: #FFFFFF;
+border: 1px solid #3988FF;
+box-sizing: border-box;
+border-radius: 8px;
+
+}
+
+.search-menu{
+  display: flex;
+  align-items: center;
+}
+
+.search-bar img{
+  width: 15px;
+  height: 15px;
+}
+
+.search-button app-input {
+  border: none;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  margin-left: 15px;
+  color: #90A0B7;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.spinner{
+margin-bottom: 20px;
+margin-top: 20px;
+}
+
+
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #90A0B7;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #90A0B7;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #90A0B7;
+}
+
+
+.card-body p {
+  
+    width: px;
+    overflow: hidden; /* taşanları gizle */
+    white-space: nowrap; /* alt satıra hiç inme */
+    text-overflow: ellipsis; /* eğer uzunsa üç nokta koy */
+
+}

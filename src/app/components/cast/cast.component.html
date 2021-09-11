@@ -1,3 +1,4 @@
+
 <div class="menu-toggle">
   <div class="search-menu">
            
@@ -13,13 +14,17 @@
   </div>
 </div>
 
+<div class="spinner" *ngIf="showSpinner">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+
 <div class="container">
     <div class="row">
         <div class=" card-style col-lg-3 col-md-4 col-sm-12" *ngFor="let cast of castList">
            
           <div class="card">
-                <img class="card-img-top" *ngIf="cast.profilePath"  src="https://image.tmdb.org/t/p/w500{{ cast.profilePath }}" alt="cast profile">
-                <img class="card-img-top" *ngIf="!cast.profilePath"  src="../../../assets/empty-profile.png" alt="cast profile">
+                <img class="card-img-top" *ngIf="cast.profilePath"  src="https://image.tmdb.org/t/p/w500{{ cast.profilePath }}" alt="cast profile" routerLink="/home/cast/detail/{{ cast.castId }}">
+                <img class="card-img-top" *ngIf="!cast.profilePath" height="363"  src="../../../assets/empty-830.png" alt="cast profile" routerLink="/home/cast/detail/{{ cast.castId }}">
                 <div class="card-body">
                   <h3 class="card-title">{{ cast.name }}</h3>
                   <hr>

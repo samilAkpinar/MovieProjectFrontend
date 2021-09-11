@@ -14,6 +14,9 @@
   </div>
 </div>
 
+<div class="spinner" *ngIf="showSpinner">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
 
 <div class="container">
     <div class="row" >
@@ -24,7 +27,7 @@
               <div class="card-body">
                 <h5 class="card-title">{{ movie.title }}</h5>
                 <p class="card-text">{{ movie.overview }}</p>
-                <app-button classItem="detail-button" text="Go To Detail"  routerLink="/home/details/{{movie.movieId}}"></app-button>
+                <app-button classItem="detail-button" text="Go To Detail"  routerLink="/home/movie/detail/{{ movie.movieId }}"></app-button>
 
               </div>
           </div>

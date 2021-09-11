@@ -1,11 +1,21 @@
+
+<div class="spinner" *ngIf="showSpinner">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+
 <div class="container">
     <div class="row">
-
+        
         <div class="image col-lg-6">
-            <img class="card-img-top" *ngIf="getMovie.backdropPath"  src="https://image.tmdb.org/t/p/w500/{{ getMovie.backdropPath }}" alt="Card image cap" />
-            <!--<img class="card-img-top" *ngIf="!getMovie.backdropPath"  src="../../../assets/empty-profile.png" alt="Card image cap"> -->
+           
+            
+            <img class="card-img-top" *ngIf="getMovie.backdropPath" src="https://image.tmdb.org/t/p/w500{{getMovie.backdropPath}}" alt="Card image cap" />
+            <img class="card-img-top" *ngIf="!getMovie.backdropPath"  src="../../../assets/empty-movie.png" alt="Card image cap" />
+            
+            
         </div>
 
+        
         <div class="detail col-lg-6">
             <div class="title">         
                 <strong>Title</strong>
@@ -24,6 +34,12 @@
         
         <hr>
 
+        <div class="image col-lg-12">
+            <iframe  width="100%" height="600" [src]="youtubeKey | safe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>            
+        </div>
+
+        <hr>
+        
         <div class="property col-lg-12">
             <div>
                 <strong>Original Language: </strong>
@@ -69,14 +85,16 @@
                 <span>{{getMovie.voteCount}}</span>
             </div>
             
-            <!-- burası başka bir yerden gelecek -->
             <div>
                 <strong>Your Vote: </strong>
-                <span >{{userVote}}</span>
+                <span>{{userVote}}</span>
             </div>
         </div>
 
         <hr>
+        <div class="spinner" *ngIf="showWoteSpinner">
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </div>
 
         <div class="vote col-lg-12">
             <strong>Vote Movie</strong>

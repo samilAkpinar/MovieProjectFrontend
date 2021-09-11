@@ -3,33 +3,31 @@ import { Router } from '@angular/router';
 import { MovieService } from 'src/app/services/movie.service';
 
 @Component({
-  selector: 'app-movies',
-  templateUrl: './movies.component.html',
-  styleUrls: ['./movies.component.scss']
+  selector: 'app-welcome',
+  templateUrl: './welcome.component.html',
+  styleUrls: ['./welcome.component.scss']
 })
-export class MoviesComponent implements OnInit {
+export class WelcomeComponent implements OnInit {
 
-  movieList:any[] = [];
   showSpinner: boolean = false;
+  UpcomingMovieList:any[] = [];
 
   constructor(
     private movies: MovieService,
     private router: Router
-    ) { }
-
-  
+  ) { }
 
   ngOnInit(): void {
     this.showSpinner = true;
 
-    this.movies.getAllMovieList().subscribe(value =>{
-      //console.log("film değeri: ", value.data);
-      
-      this.movieList = value.data
+    this.movies.getUpcomingMovies(3).subscribe(value =>{
+
+      //console.log("upcoming ", value.data);
+
+      this.UpcomingMovieList = value.data;
       this.showSpinner = false;
-
     });
-
+    
   }
 
   movieDetail(movieId:number) {
@@ -42,7 +40,7 @@ export class MoviesComponent implements OnInit {
   Search(movieTitle:string){
     if(movieTitle != ""){
 
-      this.movieList = this.movieList.filter(res => {
+      this.UpcomingMovieList = this.UpcomingMovieList.filter(res => {
         return res.title.toLocaleLowerCase().match(movieTitle.toLocaleLowerCase());
       });
 
