@@ -8,18 +8,6 @@
     padding: 0;
 }
 
-.sidebar{
-    width: 256px;
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100%;
-    padding: 1rem 1.5rem;
-    background: #FFFFFF;
-    
-    box-shadow: 6px 0px 18px rgba(0, 0, 0, 0.06);
-}
-
 
 .brand-flex {
     display: flex;
@@ -78,32 +66,10 @@
     
 }
 
-.sidebar-menu li a span img {
-    width: 15px;
-    height: 15px;
-    margin-bottom: 4px;
-
-    color:  #C2CFE0;
-    box-sizing: border-box;
-    border-radius: 1px;
-    
-}
-
-.sidebar-setting-top-line {
-    position: fixed;
-    width: 256px;
-    border-top: 2.55px solid #EBEFF2;
-    top: 165px;
-    margin-left: 0px;
-}
-
 .sidebar-dashboard {
    margin-top: 35px; 
    margin-bottom: 20px;
 }
-
-
-
 
 header {
     height: 60px;
@@ -227,8 +193,19 @@ input[type=text]:focus {
 main {
     padding-left: 36px;
     padding-right: 38px;
-    padding-top: 35px;
+    padding-top: 70px;
     background:#E5E5E5;
+}
+
+@media screen and (max-width: 700px){
+    
+    .main-content{
+        margin-left: 0px;
+    }
+
+    .header-bottom-line{
+        width: 0px;
+    }
 
 }
 

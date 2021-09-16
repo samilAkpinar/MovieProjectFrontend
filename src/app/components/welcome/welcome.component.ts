@@ -11,6 +11,15 @@ export class WelcomeComponent implements OnInit {
 
   showSpinner: boolean = false;
   UpcomingMovieList:any[] = [];
+  listTemp:any[] = [];
+
+  items:any = [];
+  pageOfItems!: Array<any>;
+
+  //ngx-pagination
+  totalLength!:number
+  page:number = 1
+  pageValue:number = 1
 
   constructor(
     private movies: MovieService,
@@ -18,16 +27,39 @@ export class WelcomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+
     this.showSpinner = true;
 
-    this.movies.getUpcomingMovies(3).subscribe(value =>{
+    this.movies.getUpcomingMovies(1).subscribe(value =>{
 
       //console.log("upcoming ", value.data);
 
       this.UpcomingMovieList = value.data;
+      this.listTemp = this.UpcomingMovieList;
+      this.totalLength = 520
+
       this.showSpinner = false;
     });
     
+  }
+
+  
+
+  pageChanged(pages:any){
+    
+    //console.log("page: ", page);
+    this.pageValue = pages;
+    this.showSpinner = true;
+
+    this.movies.getUpcomingMovies(pages).subscribe(value => {
+      
+      this.UpcomingMovieList = value.data;
+      this.listTemp = this.UpcomingMovieList;
+
+      this.showSpinner = false;
+    });
+
   }
 
   movieDetail(movieId:number) {
@@ -40,12 +72,14 @@ export class WelcomeComponent implements OnInit {
   Search(movieTitle:string){
     if(movieTitle != ""){
 
-      this.UpcomingMovieList = this.UpcomingMovieList.filter(res => {
+      var list = this.listTemp.filter(res => {
         return res.title.toLocaleLowerCase().match(movieTitle.toLocaleLowerCase());
       });
 
+      this.UpcomingMovieList = list;
+
     }else if (movieTitle == ""){
-      this.ngOnInit();
+      this.pageChanged(this.pageValue);
     }
 
     

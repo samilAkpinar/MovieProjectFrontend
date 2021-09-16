@@ -18,9 +18,9 @@ export class MovieService {
   voteValue!:number;
 
   
-  getAllMovieList():Observable<any> {
+  getAllMovieList(pageNumber:number):Observable<any> {
 
-    return this.http.get("https://localhost:44389/api/v1/movies/get-populer-movie?page=1", {headers: new HttpHeaders().set('Authorization', 'Bearer '+this.token)})
+    return this.http.get("https://localhost:44389/api/v1/movies/get-populer-movie?page="+pageNumber, {headers: new HttpHeaders().set('Authorization', 'Bearer '+this.token)})
   }
 
 

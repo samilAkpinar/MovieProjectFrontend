@@ -1,12 +1,7 @@
-import { formatCurrency } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { from } from 'rxjs';
-import { LoginComponent } from 'src/app/pages/login/login.component';
-import { FormService } from 'src/app/services/form.service';
-import { MovieService } from 'src/app/services/movie.service';
+import { SidebarMenuService } from 'src/app/services/sidebar-menu.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
-import { MovieDetailComponent } from '../movie-detail/movie-detail.component';
 
 @Component({
   selector: 'app-header',
@@ -17,11 +12,16 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private route:Router,
-    private snackbarService: SnackbarService
+    private snackbarService: SnackbarService,
+    private menu : SidebarMenuService
     ) { }
 
   email:any;
   user:any;
+
+  menuList:any;
+  token:any = localStorage.getItem("jwt-token");
+  showSpinner: Boolean = false;
 
   
 
@@ -30,6 +30,21 @@ export class HeaderComponent implements OnInit {
       fullName: localStorage.getItem("name-surname"),
       email: localStorage.getItem("email")
     }
+
+    this.showSpinner = true;
+
+    this.menu.getMenuList(this.token).subscribe(values => {
+      //console.log("get menu değeri: " , values.isSuccess)
+      
+      if(values.isSuccess == false) {
+        //console.log("menu listesi getirilemedi")
+        this.snackbarService.createSnackbar("error","Get list failed");
+      }
+
+      this.menuList = values.data; 
+      this.showSpinner = false;
+
+    });
   }
 
   
@@ -42,6 +57,10 @@ export class HeaderComponent implements OnInit {
 
     this.route.navigate(['/']);
 
+  }
+
+  openMenu(){
+    console.log("open menu");
   }
 
 }

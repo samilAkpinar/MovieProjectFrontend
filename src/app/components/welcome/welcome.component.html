@@ -1,4 +1,6 @@
 
+
+<div class="menu">
   <div class="menu-toggle">
     <div class="search-menu">
              
@@ -14,6 +16,13 @@
     </div>
   </div>
 
+  <div class="pagination">
+    <pagination-controls class="text-center"
+        (pageChange)="pageChanged(page = $event)">
+    </pagination-controls>
+  </div>
+</div>
+
   <div class="spinner" *ngIf="showSpinner">
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   </div>
@@ -21,7 +30,7 @@
   
   <div class="container">
       <div class="row" >
-        <div class=" card-style col-lg-4 col-md-6 col-sm-12" *ngFor="let movie of UpcomingMovieList" >
+        <div class=" card-style col-lg-4 col-md-6 col-sm-12" *ngFor="let movie of UpcomingMovieList | paginate: { itemsPerPage: 20, currentPage: page, totalItems: totalLength }  " >
   
             <div class="card">
                 <img class="card-img-top" *ngIf="movie.backdropPath" src="https://image.tmdb.org/t/p/w500{{ movie.backdropPath }}" alt="Card image cap">

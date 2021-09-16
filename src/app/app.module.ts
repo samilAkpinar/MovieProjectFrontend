@@ -33,6 +33,16 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { CastDetailComponent } from './components/cast-detail/cast-detail.component';
 import { SafePipe } from './safe.pipe';
 
+import { JwPaginationModule } from 'jw-angular-pagination';
+import {NgxPaginationModule} from 'ngx-pagination';
+
+import {MatIconModule} from '@angular/material/icon';
+import {MatToolbarModule} from '@angular/material/toolbar';
+
+
+// For MDB Angular Free
+import { NavbarModule, WavesModule } from 'angular-bootstrap-md'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,7 +68,7 @@ import { SafePipe } from './safe.pipe';
     NotFoundComponent,
     WelcomeComponent,
     CastDetailComponent,
-    SafePipe,
+    SafePipe
 
   ],
   imports: [
@@ -70,6 +80,12 @@ import { SafePipe } from './safe.pipe';
     HttpClientModule,
     MatSnackBarModule,
     MatProgressBarModule,
+    JwPaginationModule,
+    NgxPaginationModule,
+    MatIconModule,
+    MatToolbarModule,
+    NavbarModule, 
+    WavesModule
   ],
   providers: [],
   bootstrap: [AppComponent],

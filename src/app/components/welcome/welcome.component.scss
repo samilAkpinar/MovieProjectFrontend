@@ -28,6 +28,12 @@ border-radius: 8px;
 
 }
 
+.menu{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .search-menu{
   display: flex;
   align-items: center;
@@ -79,3 +85,8 @@ margin-top: 20px;
     text-overflow: ellipsis; /* eğer uzunsa üç nokta koy */
 
 }
+
+
+
+
+

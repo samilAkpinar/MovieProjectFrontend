@@ -1,18 +1,26 @@
+<div class="menu">
+  <div class="menu-toggle">
+    <div class="search-menu">
+             
+         <div class="search-bar">
+            <img src="https://img.icons8.com/material-outlined/24/000000/search--v1.png"/>
+        </div>
+        
+        <div class="search-button">
+           <!-- <app-input class="search-input" placeholder="Movie Name" ></app-input> -->
+            <input class="search-input" type="text" #searchText  (keyup)="Search(searchText.value)"  placeholder="Movie Name">
+            
+        </div>
+    </div>
+  </div>
 
-<div class="menu-toggle">
-  <div class="search-menu">
-           
-       <div class="search-bar">
-          <img src="https://img.icons8.com/material-outlined/24/000000/search--v1.png"/>
-      </div>
-      
-      <div class="search-button">
-         <!-- <app-input class="search-input" placeholder="Movie Name" ></app-input> -->
-          <input class="search-input" type="text" #searchText  (keyup)="Search(searchText.value)"  placeholder="Movie Name">
-          
-      </div>
+  <div class="pagination">
+    <pagination-controls class="text-center"
+        (pageChange)="pageChanged(page = $event)">
+    </pagination-controls>
   </div>
 </div>
+
 
 <div class="spinner" *ngIf="showSpinner">
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
@@ -20,10 +28,11 @@
 
 <div class="container">
     <div class="row" >
-      <div class=" card-style col-lg-4 col-md-6 col-sm-12" *ngFor="let movie of movieList" >
+      <div class=" card-style col-lg-4 col-md-6 col-sm-12" *ngFor="let movie of movieList   | paginate: { itemsPerPage: 1, currentPage: page, totalItems: totalLength }  " >
 
           <div class="card">
               <img class="card-img-top" *ngIf="movie.backdropPath" src="https://image.tmdb.org/t/p/w500{{ movie.backdropPath }}" alt="Card image cap">
+              <img class="card-img-top" *ngIf="!movie.backdropPath" src="../../../assets/empty-movie.png" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">{{ movie.title }}</h5>
                 <p class="card-text">{{ movie.overview }}</p>
