@@ -27,7 +27,7 @@ export class CastDetailComponent implements OnInit {
     //Burada cast servisine gidilecek ve cast by id çağrılacak.
     this.castService.getCastById(id).subscribe(value =>{
 
-      console.log("cast dönen veri: ",value.data);
+      //console.log("cast dönen veri: ",value.data);
       this.cast = value.data;
 
       if(this.cast.gender == 1){

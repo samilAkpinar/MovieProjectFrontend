@@ -37,13 +37,13 @@ export class MovieDetailComponent implements OnInit {
     //get movie video by id
     this.movie.getMovieVideoById(id).subscribe(value =>{
 
-      console.log("movie hata mıdır: ",value);
+     //console.log("movie ",value);
 
       if(value.isSuccess){
 
         this.movieVideo = value.data[0];
         this.youtubeKey = this.youtubeKey + this.movieVideo.key;
-        console.log("denmee , ", this.youtubeKey);
+     //console.log("movie , ", this.youtubeKey);
       
       }else{
 

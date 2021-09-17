@@ -1,26 +1,23 @@
-
-
 <div class="menu">
   <div class="menu-toggle">
-    <div class="search-menu">
-             
+
+    <div class="box search-menu">  
          <div class="search-bar">
             <img src="https://img.icons8.com/material-outlined/24/000000/search--v1.png"/>
         </div>
         
         <div class="search-button">
-           <!-- <app-input class="search-input" placeholder="Movie Name" ></app-input> -->
             <input class="search-input" type="text" #searchText  (keyup)="Search(searchText.value)"  placeholder="Upcoming Movie Name">
             
         </div>
     </div>
+    <div class="box pagination">
+      <pagination-controls 
+          (pageChange)="pageChanged(page = $event)">
+      </pagination-controls>
+    </div>
   </div>
 
-  <div class="pagination">
-    <pagination-controls class="text-center"
-        (pageChange)="pageChanged(page = $event)">
-    </pagination-controls>
-  </div>
 </div>
 
   <div class="spinner" *ngIf="showSpinner">

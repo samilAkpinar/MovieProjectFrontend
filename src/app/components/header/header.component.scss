@@ -98,11 +98,13 @@ links ul li {
 
     .navbar-links{
         display: inline-block;
+        position: fixed;
         background-color: #FFFFFF;
         width: 100%;
         padding-right: 3px;
+        z-index: 20;
     }
-
+   
     .header-icons{
         padding-left: 10px;
     }

@@ -19,7 +19,7 @@ export class CastComponent implements OnInit {
     this.cast.getAllCastList().subscribe(value => {
 
       this.castList = value.data;
-      console.log("castList",value.data);
+      //console.log("castList",value.data);
       this.showSpinner = false;
     });
   }

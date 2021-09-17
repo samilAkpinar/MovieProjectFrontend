@@ -37,7 +37,7 @@ export class WelcomeComponent implements OnInit {
 
       this.UpcomingMovieList = value.data;
       this.listTemp = this.UpcomingMovieList;
-      this.totalLength = 520
+      this.totalLength = 380
 
       this.showSpinner = false;
     });

@@ -28,10 +28,19 @@ border-radius: 8px;
 
 }
 
-.menu{
+.box{
+  float: left;
+  margin-bottom: 15px;
+}
+
+.menu-toggle{
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.menu{
+  margin-top: 10px;
 }
 
 .search-menu{
@@ -86,6 +95,20 @@ margin-top: 20px;
 
 }
 
+@media screen and (max-width: 700px){
+  .pagination{
+    position: relative;
+  }  
+
+  .menu-toggle{
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+    
+  }
+  
+
+}
 
 
 
