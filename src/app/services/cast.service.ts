@@ -13,11 +13,11 @@ export class CastService {
   
   getAllCastList():Observable<any> {
 
-    return this.http.get("https://localhost:44389/api/v1/cast/get-populer-cast?movieId=550", {headers: new HttpHeaders().set('Authorization', 'Bearer '+this.token)})
+    return this.http.get("https://localhost:5001/api/v1/cast/get-populer-cast?movieId=550", {headers: new HttpHeaders().set('Authorization', 'Bearer '+this.token)})
   }
 
   getCastById(castId:number):Observable<any>{
 
-    return this.http.get("https://localhost:44389/api/v1/cast/get-cast-by-id?movieId=550&castId="+castId, {headers: new HttpHeaders().set('Authorization', 'Bearer '+this.token)})
+    return this.http.get("https://localhost:5001/api/v1/cast/get-cast-by-id?movieId=550&castId="+castId, {headers: new HttpHeaders().set('Authorization', 'Bearer '+this.token)})
   }
 }
