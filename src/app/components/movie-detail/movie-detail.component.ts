@@ -1,4 +1,3 @@
-import { partitionArray } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MovieService } from 'src/app/services/movie.service';
@@ -39,40 +38,51 @@ export class MovieDetailComponent implements OnInit {
 
      //console.log("movie ",value);
 
-      if(value.isSuccess){
+      if(value.result){
 
         this.movieVideo = value.data[0];
         this.youtubeKey = this.youtubeKey + this.movieVideo.key;
-     //console.log("movie , ", this.youtubeKey);
+        //console.log("movie , ", this.youtubeKey);
       
       }else{
 
         this.snackbar.createSnackbar("error","Movie Video didn't access")
       }
 
-      
-
     });
 
     //get movie by id
     this.movie.getMovieById(id).subscribe(value => {
      //console.log("get movie by id: ", value.data);
+     
+     if(value.result){
 
       this.getMovie = value.data;
-
       this.genres = value.data.genres;
+
+     }else {
+      this.snackbar.createSnackbar("error","Movie didn't get");
+     }
+
       this.showSpinner = false;
+
     })
 
     
     this.movie.getUserVote(id, this.sessionId).subscribe(value => {
       
-      if(!value.rated){
-        this.userVote = "-";
+      //console.log("deneme", value.data );
+      var rateValue = JSON.parse(value.data);
+
+      //console.log("vaot. ", rateValue.rated.value)
+
+      if(value.result){
+
+        this.userVote = rateValue.rated.value;
 
       }else {
-
-        this.userVote = value.rated.value;
+          
+        this.userVote = "-";
       }
     });
 
@@ -85,25 +95,30 @@ export class MovieDetailComponent implements OnInit {
 
     this.movie.putVotedMovie(this.movieId,this.sessionId).subscribe(data => {
 
-      //console.log("vote data: "+data.success)
+      //console.log("vote data: ", data)
 
-      if(data.success){
+      if(data.result){
 
         this.movie.getUserVote(this.movieId, this.sessionId).subscribe(value => {
       
-          if(!value.rated){
-            this.userVote = "-";
-    
+          if(value.result){
+
+            var jsonResult = JSON.parse(value.data);
+
+            this.userVote = jsonResult.rated.value;
+            this.ngOnInit();
+            this.showWoteSpinner = false;
+            
           }else {
     
-            this.userVote = value.rated.value;
-            this.ngOnInit();
+            this.userVote = "-";
             this.showWoteSpinner = false;
           }
         });
 
       }else{
         this.userVote = "-";
+        this.showWoteSpinner = false;
       }
 
     });

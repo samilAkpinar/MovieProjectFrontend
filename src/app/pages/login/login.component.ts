@@ -50,7 +50,9 @@ export class LoginComponent implements OnInit {
 
     this.formService.sendEmail().subscribe(value =>{
 
-      if(value.data){
+      //console.log("send mail: ",value);
+
+      if(value.result){
 
         this.snackbarService.createSnackbar("info","Email sent successfully");
       }else{
@@ -70,43 +72,57 @@ export class LoginComponent implements OnInit {
     this.formService.authenticate().subscribe(value => {
 
       
-      if(value.isSuccess == false){
+      if(value.result == false){
 
         this.snackbarService.createSnackbar('error',"Invalid email and password")
         this.showSpinner = false;
-        return value;
+        return value.result;
       
       }
 
       //create movie token
-      this.formService.createMovieToken().subscribe(data => {
+      this.formService.createMovieToken().subscribe(getData => {
         
-        //console.log("Movie token value: " , data.request_token);
+        console.log("Movie token value: " , getData);
+
+        if(!getData.result){
+          this.snackbarService.createSnackbar("error","Something went wrong, Please try again later");
+          return value.result;
+        }
+
+        var jsonData = JSON.parse(getData.data);
        
-       this.formService.createSessionWithLogin(data.request_token).subscribe(sessionWithLogin =>{
+       this.formService.createSessionWithLogin(jsonData.request_token).subscribe(sessionWithLogin =>{
         
-        //console.log("session with login değeridir: ",sessionWithLogin.data.request_token);
+        console.log("session with login: ",sessionWithLogin.data.request_token);
+        
+        if(!sessionWithLogin.result){
+          this.snackbarService.createSnackbar("error","Something went wrong, Please try again later");
+          return sessionWithLogin.result;
+        }
       
         this.formService.createSession(sessionWithLogin.data.request_token).subscribe(session =>{
 
-          //session üretilmiştir.
-          var obj = JSON.parse(session);
+          var jsonSession = JSON.parse(session);
 
-        //console.log("session success değeri",obj);
+          console.log("session json",jsonSession);
         
-        if(obj.success == true){
+        
+        if(jsonSession.result){
+
+          var jsonData = JSON.parse(jsonSession.data);
           
-          localStorage.setItem("session",obj.session_id);
+          localStorage.setItem("session", jsonData.session_id);
 
           this.snackbarService.createSnackbar('success',"Login successfully")
-          this.route.navigate(['/home']);
-        
+          this.route.navigate(['/home/upcoming']);
+                  
         }else{
 
           this.snackbarService.createSnackbar('error',"Login failed")
         }
 
-        
+        this.showSpinner = false;
 
         });
        });
@@ -130,9 +146,9 @@ export class LoginComponent implements OnInit {
 
     this.formService.signUp().subscribe(data => {
 
-      //console.log("kullanıcı kayıt sonucu ", data);
+      console.log("kullanıcı kayıt sonucu ", data);
 
-      if(data.isSuccess){
+      if(data.result){
 
         this.snackbarService.createSnackbar('info','User save')
         

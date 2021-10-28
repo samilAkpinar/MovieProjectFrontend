@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SnackbarService } from 'src/app/services/snackbar.service';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +12,7 @@ export class HomeComponent implements OnInit {
   constructor(private route: Router) {}
 
   ngOnInit(): void {
-    this.route.navigate(['/home/upcoming']);
+    //this.route.navigate(['/home/upcoming']);
 
      if (localStorage.getItem('session') == null) {
        this.route.navigate(['/']);

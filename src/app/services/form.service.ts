@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { empty, Observable } from 'rxjs';
 import { CreateSession } from '../models/CreateSession';
 import { ResetPassword } from '../models/ResetPassword';
 import { SessionWithLogin } from '../models/sessionWithLogin';
@@ -65,6 +65,11 @@ export class FormService {
   }
 
   authenticate():Observable<any> {
+
+    if(this.TxtEmail.length == 0 || this.TxtPassword.length < 8){
+      this.snacbar.createSnackbar("error","Invalid email or password");
+      return empty();
+    }
 
       const user = new User(1,"","",this.TxtEmail,this.TxtPassword,"","",3);
 

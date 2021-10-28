@@ -42,7 +42,8 @@ export class ForgottenPasswordComponent implements OnInit {
   //button click
   resetPassword():void{
     this.formService.sendNewPassword(this.email).subscribe(value =>{
-      if(value.isSuccess){
+      
+      if(value.result){
         this.snackbar.createSnackbar("info","Password update successfully");
       }else {
         

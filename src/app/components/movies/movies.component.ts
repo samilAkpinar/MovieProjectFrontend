@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MovieService } from 'src/app/services/movie.service';
+import { SnackbarService } from 'src/app/services/snackbar.service';
 
 @Component({
   selector: 'app-movies',
@@ -24,19 +25,27 @@ export class MoviesComponent implements OnInit {
   
   constructor(
     private movies: MovieService,
-    private router: Router
+    private router: Router,
+    private snackbar: SnackbarService
     ) { }
 
   ngOnInit(): void {
     this.showSpinner = true;
 
     this.movies.getAllMovieList(1).subscribe(value =>{
-      //console.log("film değeri: ", value.data);
+      //console.log("film değeri: ", value);
       
-      this.movieList = value.data
-      this.listTemp = this.movieList;
-      this.totalLength = 500
+      if(value.result){
+
+        this.movieList = value.data
+        this.listTemp = this.movieList;
+        this.totalLength = 500
       
+      }else{
+
+        this.snackbar.createSnackbar("error","movieList didn't get");
+      }
+
       this.showSpinner = false;
 
     });
