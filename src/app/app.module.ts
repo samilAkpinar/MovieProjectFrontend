@@ -87,7 +87,12 @@ import { NavbarModule, WavesModule } from 'angular-bootstrap-md'
     NavbarModule, 
     WavesModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'apiUrl',
+      useValue: 'https://movieproject20211028113058.azurewebsites.net/api/v1'
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

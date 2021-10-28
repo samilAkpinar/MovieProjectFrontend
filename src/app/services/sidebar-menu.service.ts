@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,13 +7,16 @@ import { Observable } from 'rxjs';
 })
 export class SidebarMenuService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    @Inject('apiUrl') private apiUrl: string,
+    private http: HttpClient
+    ) { }
 
   menuList!:any;
 
   getMenuList(token:string):Observable<any> {
     //token değeri ile Authorization işlemi yapılmış oldu.
-   return this.http.get("https://localhost:5001/api/v1/home/get-menu?token="+token, {headers: new HttpHeaders().set('Authorization', 'Bearer '+token)});
+   return this.http.get(this.apiUrl +"/home/get-menu?token="+token, {headers: new HttpHeaders().set('Authorization', 'Bearer '+token)});
     
     
   }

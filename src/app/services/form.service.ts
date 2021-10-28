@@ -1,5 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { empty, Observable } from 'rxjs';
 import { CreateSession } from '../models/CreateSession';
 import { ResetPassword } from '../models/ResetPassword';
@@ -15,6 +15,7 @@ import { SnackbarService } from './snackbar.service';
 export class FormService {
 
   constructor(
+    @Inject('apiUrl') private apiUrl: string,
     private http: HttpClient,
     private snacbar : SnackbarService
     
@@ -43,7 +44,7 @@ export class FormService {
 
   sendEmail():Observable<any> {
     
-    return this.http.get("https://localhost:5001/api/v1/authentication/reset-password?email="+this.TxtEmail);
+    return this.http.get(this.apiUrl +"/authentication/reset-password?email="+this.TxtEmail);
   }
 
   sendNewPassword(email:string):Observable<any>{
@@ -53,13 +54,13 @@ export class FormService {
     reset.email = email;
     reset.password = this.TxtPassword;
 
-    return this.http.post("https://localhost:5001/api/v1/authentication/update-password",reset); 
+    return this.http.post(this.apiUrl +"/authentication/update-password",reset); 
   }
 
   signUp():Observable<any> {
 
       const signUp = new SignUp(0,this.TxtName,this.TxtSurname,this.TxtEmail,this.TxtPassword,3);
-      return this.http.post("https://localhost:5001/api/v1/authentication/register",signUp)
+      return this.http.post(this.apiUrl +"/authentication/register",signUp)
     
           
   }
@@ -74,14 +75,14 @@ export class FormService {
       const user = new User(1,"","",this.TxtEmail,this.TxtPassword,"","",3);
 
       //create jwt token
-      return this.http.post("https://localhost:5001/api/v1/authentication/authenticate",user);
+      return this.http.post(this.apiUrl +"/authentication/authenticate",user);
     
   }
 
   createMovieToken():Observable<any> {
 
     //create movie token
-    return this.http.get("https://localhost:5001/api/v1/authentication/create-token");
+    return this.http.get(this.apiUrl +"/authentication/create-token");
   }
 
   createSessionWithLogin(request_token:string):Observable<any> {
@@ -91,7 +92,7 @@ export class FormService {
     sessionWithLogin.password = "Ad15091978"
     sessionWithLogin.request_token = request_token;
 
-    return this.http.post("https://localhost:5001/api/v1/authentication/create-session-with-login",sessionWithLogin);
+    return this.http.post(this.apiUrl +"/authentication/create-session-with-login",sessionWithLogin);
   }
 
   
@@ -103,7 +104,7 @@ export class FormService {
     validationEmail.token = token;
 
     const headers = { 'content-type': 'application/json'}
-    return this.http.post("https://localhost:5001/api/v1/authentication/validation-email",validationEmail,{'headers':headers, responseType: 'text'})
+    return this.http.post(this.apiUrl +"/authentication/validation-email",validationEmail,{'headers':headers, responseType: 'text'})
   }
 
   createSession(token:string):Observable<any>{
@@ -112,7 +113,7 @@ export class FormService {
     createSession.request_token = token;
 
     const headers = { 'content-type': 'application/json'}
-    return this.http.post("https://localhost:5001/api/v1/authentication/create-session",createSession,{'headers':headers, responseType: 'text'})
+    return this.http.post(this.apiUrl +"/authentication/create-session",createSession,{'headers':headers, responseType: 'text'})
 
   }
 
