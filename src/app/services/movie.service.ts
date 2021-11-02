@@ -75,7 +75,7 @@ export class MovieService {
 
   getMovieVideoById(movieId:number):Observable<any>{
 
-    return this.http.get(this.apiUrl +"/movies/get-movie-video-by-id?movieId="+movieId, {headers: new HttpHeaders().set('Authorization', 'Bearer '+this.token)});
+    return this.http.get(this.apiUrl +"/movies/get-movie-video-by-id/"+movieId, {headers: new HttpHeaders().set('Authorization', 'Bearer '+this.token)});
   
   }
 
