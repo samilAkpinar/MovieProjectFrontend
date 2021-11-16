@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     this.signUpStatus = false;
 
     if(localStorage.getItem("session") != null ){
-      this.route.navigate(['/home']);
+      this.route.navigate(['/home/upcoming']);
     }
 
   }
@@ -91,6 +91,7 @@ export class LoginComponent implements OnInit {
 
         if(!getData.result){
           this.snackbarService.createSnackbar("error","Something went wrong, Please try again later");
+          this.showSpinner = false;
           return value.result;
         }
 
@@ -102,6 +103,7 @@ export class LoginComponent implements OnInit {
         
         if(!sessionWithLogin.result){
           this.snackbarService.createSnackbar("error","Something went wrong, Please try again later");
+          this.showSpinner = false;
           return sessionWithLogin.result;
         }
       
