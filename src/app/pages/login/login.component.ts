@@ -80,6 +80,10 @@ export class LoginComponent implements OnInit {
       
       }
 
+      localStorage.setItem("name-surname",value.data.name +" "+ value.data.surname)
+      localStorage.setItem("email",value.data.email);
+      localStorage.setItem("jwt-token",value.data.token); 
+
       //create movie token
       this.formService.createMovieToken().subscribe(getData => {
         
@@ -130,9 +134,7 @@ export class LoginComponent implements OnInit {
       });
 
       this.showSpinner = false;
-      localStorage.setItem("name-surname",value.data.name +" "+ value.data.surname)
-      localStorage.setItem("email",value.data.email);
-      localStorage.setItem("jwt-token",value.data.token); 
+      
 
     });
   }
