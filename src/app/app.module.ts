@@ -29,12 +29,12 @@ import { ForgottenPasswordComponent } from './pages/forgotten-password/forgotten
 import { ResetPasswordFormComponent } from './partial/reset-password-form/reset-password-form.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatProgressBarModule} from '@angular/material/progress-bar';
 import { CastDetailComponent } from './components/cast-detail/cast-detail.component';
 import { SafePipe } from './safe.pipe';
 
 import { JwPaginationModule } from 'jw-angular-pagination';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule} from 'ngx-pagination';
 
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -90,6 +90,7 @@ import { NavbarModule, WavesModule } from 'angular-bootstrap-md'
   providers: [
     {
       provide: 'apiUrl',
+      //useValue: 'https://localhost:5001/api/v1'
       useValue: 'https://movieproject20211028113058.azurewebsites.net/api/v1'
     }
   ],
