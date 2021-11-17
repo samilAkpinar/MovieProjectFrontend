@@ -23,7 +23,7 @@ const routes: Routes = [
 
   {path: "reset/:email/:verify", component: ForgottenPasswordComponent},
   {path: '404', component: NotFoundComponent},
-  {path: '**',redirectTo: '404' }
+  //{path: '**',redirectTo: '404' }
 
 ];
 
