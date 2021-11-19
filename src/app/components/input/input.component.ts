@@ -14,6 +14,7 @@ export class InputComponent implements OnInit {
   @Input() label: string = "";
   @Input() placeholder: string = "";
   @Input() class: string = "";
+  @Input() name: string = "";
   
   
   labelState!: boolean; //input focus durumundaki style değişimidir.

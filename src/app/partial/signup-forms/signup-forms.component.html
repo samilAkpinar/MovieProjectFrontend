@@ -1,0 +1,21 @@
+<form #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value)">
+    
+    <label class="label" >Name</label>
+    <input class="text-font-18" name="name" type="text" placeholder="Enter your name" (click)="onFocus()" (blur)="onBlur()" ngModel />
+
+    <label class="label" >Surname</label>
+    <input class="text-font-18" name="surname" type="text" placeholder="Enter your surname" (click)="onFocus()" (blur)="onBlur()" ngModel />
+
+    <label class="label" >Email</label>
+    <input class="text-font-18" name="email" type="email" placeholder="Enter your email address" (click)="onFocus()" (blur)="onBlur()" ngModel />
+    
+    <label class="label" >Password</label>
+    <input class="text-font-18" name="password"  type="password" placeholder="************" (click)="onFocus()" (blur)="onBlur()" ngModel />
+    
+    <app-button typeItem="submit" classItem="button" text="Log In"></app-button>
+    
+    <div class="login" > 
+        <div  class="link"  (click) ="goToLoginPage()">or Log In?</div>
+    </div>
+
+</form>

@@ -28,12 +28,15 @@ export class WelcomeComponent implements OnInit {
 
   ngOnInit(): void {
 
-
     this.showSpinner = true;
 
+    console.log("upcoming veri isteniyor...")
+
+    this.pageChanged(1);
+/*
     this.movies.getUpcomingMovies(1).subscribe(value =>{
 
-      //console.log("upcoming ", value.data);
+      console.log("upcoming ", value.data);// takılıyıor
 
       this.UpcomingMovieList = value.data;
       this.listTemp = this.UpcomingMovieList;
@@ -41,21 +44,22 @@ export class WelcomeComponent implements OnInit {
 
       this.showSpinner = false;
     });
-    
+ */   
   }
 
   
 
-  pageChanged(pages:any){
+  pageChanged(pages:number){
     
     //console.log("page: ", page);
-    this.pageValue = pages;
+    //this.pageValue = pages;
     this.showSpinner = true;
 
     this.movies.getUpcomingMovies(pages).subscribe(value => {
       
       this.UpcomingMovieList = value.data;
       this.listTemp = this.UpcomingMovieList;
+      this.totalLength = 380
 
       this.showSpinner = false;
     });

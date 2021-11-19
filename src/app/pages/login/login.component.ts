@@ -37,11 +37,14 @@ export class LoginComponent implements OnInit {
 
   loginPageShow(){
     this.status = true;
+    this.signUpStatus = false;
   }
 
   forgotPasswordPageShow() {
     this.status = false;
   }
+
+  /*
 
   //forgot password
   emailSend():void{
@@ -63,31 +66,56 @@ export class LoginComponent implements OnInit {
     });
     this.showSpinner = false;
   }
+  */
 
-  //login button.
+  /*
+  //login button. 
   createTokenButton():any {
-
     this.showSpinner = true;
 
+    
     this.formService.authenticate().subscribe(value => {
 
       
       if(value.result == false){
 
-        this.snackbarService.createSnackbar('error',"Invalid email and password")
+        this.snackbarService.createSnackbar('error',"Error, Invalid email and password")
         this.showSpinner = false;
         return value.result;
       
       }
-
+      
+      localStorage.setItem("jwt-token",value.data.token); 
       localStorage.setItem("name-surname",value.data.name +" "+ value.data.surname)
       localStorage.setItem("email",value.data.email);
-      localStorage.setItem("jwt-token",value.data.token); 
+      
 
+      //promise
+      var p = new Promise(function(resolve,reject){
+        
+        if(localStorage.getItem("jwt-token")){
+
+            resolve(value.data.token);
+          }else{
+            
+            reject("Something went wrong");
+          }
+      });
+
+      p.then(function(param:any){
+        
+        return true;
+
+      }).catch(function(error){
+        console.log(error);
+
+      });
+
+      
       //create movie token
       this.formService.createMovieToken().subscribe(getData => {
         
-        console.log("Movie token value: " , getData);
+        //console.log("Movie token value: " , getData);
 
         if(!getData.result){
           this.snackbarService.createSnackbar("error","Something went wrong, Please try again later");
@@ -141,9 +169,13 @@ export class LoginComponent implements OnInit {
     });
   }
 
+*/
+
   SignUpPageShow(){
     this.signUpStatus = true;
   }
+
+  /*
 
   signUp(){
     this.showSpinner = true;
@@ -165,4 +197,6 @@ export class LoginComponent implements OnInit {
       
     });
   }
+
+  */
 }

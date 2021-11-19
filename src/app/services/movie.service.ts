@@ -14,25 +14,26 @@ export class MovieService {
     private http:HttpClient,
     private snackbarService: SnackbarService
     ) { }
+
+  token:any;
   
-  token:any = localStorage.getItem("jwt-token");
   voteValue!:number;
 
   
   getAllMovieList(pageNumber:number):Observable<any> {
     
-    return this.http.get(this.apiUrl +"/movies/get-populer-movie/"+pageNumber, {headers: new HttpHeaders().set('Authorization', 'Bearer '+this.token)})
+    return this.http.get(this.apiUrl +"/movies/get-populer-movie/"+pageNumber, {headers: new HttpHeaders().set('Authorization', 'Bearer '+this.getToken())})
   }
 
 
   getMovieById(movieId:number):Observable<any> {
 
-    return this.http.get(this.apiUrl +"/movies/get-movie-by-id/"+movieId, {headers: new HttpHeaders().set('Authorization', 'Bearer '+this.token)})
+    return this.http.get(this.apiUrl +"/movies/get-movie-by-id/"+movieId, {headers: new HttpHeaders().set('Authorization', 'Bearer '+this.getToken())})
   }
 
   getUserVote(movieId:number, sessionId:string):Observable<any> {
 
-    return this.http.get(this.apiUrl +"/movies/get-rate-movie?movieId="+movieId+"&sessionId="+sessionId+"&guestId=3", {headers: new HttpHeaders().set('Authorization', 'Bearer '+this.token)})
+    return this.http.get(this.apiUrl +"/movies/get-rate-movie?movieId="+movieId+"&sessionId="+sessionId+"&guestId=3", {headers: new HttpHeaders().set('Authorization', 'Bearer '+this.getToken())})
   }
 
   addVoteValue(voteValue:number){
@@ -53,10 +54,10 @@ export class MovieService {
     rateMovie.Note = "";
     
 
-    if ( this.voteValue > 0 && this.voteValue < 11){
+    if (this.voteValue > 0 && this.voteValue < 11){
 
       this.snackbarService.createSnackbar("success","Your vote successfully update")
-      return this.http.post(this.apiUrl +"/movies/rate-movie", rateMovie , {headers: new HttpHeaders().set('Authorization', 'Bearer '+this.token)})
+      return this.http.post(this.apiUrl +"/movies/rate-movie", rateMovie , {headers: new HttpHeaders().set('Authorization', 'Bearer '+this.getToken())})
       
       
     }else{
@@ -70,13 +71,19 @@ export class MovieService {
   
   getUpcomingMovies(page:number):Observable<any> {
     
-    return this.http.get(this.apiUrl +"/movies/upcoming-movies/"+page, {headers: new HttpHeaders().set('Authorization', 'Bearer '+this.token)})
+    return this.http.get(this.apiUrl +"/movies/upcoming-movies/"+page, {headers: new HttpHeaders().set('Authorization', 'Bearer '+this.getToken())})
   }
 
   getMovieVideoById(movieId:number):Observable<any>{
 
-    return this.http.get(this.apiUrl +"/movies/get-movie-video-by-id/"+movieId, {headers: new HttpHeaders().set('Authorization', 'Bearer '+this.token)});
+    return this.http.get(this.apiUrl +"/movies/get-movie-video-by-id/"+movieId, {headers: new HttpHeaders().set('Authorization', 'Bearer '+this.getToken())});
   
+  }
+
+  getToken(): string {
+
+    this.token = localStorage.getItem("jwt-token");
+    return this.token;
   }
 
 }

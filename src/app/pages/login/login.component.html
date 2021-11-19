@@ -1,52 +1,25 @@
 <div class="container h-100">
-    
     <div class="row h-100 justify-content-center align-items-xl-center">
-        
         <div class="card-style">
+            
+            <!-- spinner -->
             <div class="spinner" *ngIf="showSpinner">
                 <mat-progress-bar mode="indeterminate"></mat-progress-bar>
               </div>  
 
                  <app-image></app-image>     
                 
-                <div class="main-text-center main-text-style">
-                 <!--   <span class="text-font-18" *ngIf="status && !signUpStatus">Welcome To The Movie World</span>  --> 
+                <!-- Login -->
+                <app-login-forms *ngIf="status && !signUpStatus"></app-login-forms>
 
-                    <div *ngIf="!status"  class="main-text-style-2">
-                        <span class="text-font-18">Enter the e-mail address <br> you want to reset your password</span>
-                    </div>
-                </div>  
-                
-                <app-signup-form *ngIf="signUpStatus"></app-signup-form>
-                
-                <app-login-form *ngIf="status && !signUpStatus"></app-login-form>
-                
-                <app-password-forgotten *ngIf="!status"></app-password-forgotten>
+                <!-- Reset Password -->
+                <app-password-forgotten-forms *ngIf="!status" ></app-password-forgotten-forms>
 
-                <app-reset-password-button *ngIf="!status" (click)="emailSend()"></app-reset-password-button>
-
-                <div class="password-button-right" *ngIf="status && !signUpStatus"> 
-                    <app-button class="forgot-password" classItem="link"  text="Forgot Password?" (click) ="forgotPasswordPageShow()"></app-button>
-                </div>
-                
-                <div class="giris-yap" *ngIf="!status ">
-                    <app-button classItem="link"  text="or Log In" (click) ="loginPageShow()"></app-button>
-                </div>
-
-                <app-login-button  *ngIf="status && !signUpStatus" (click)="createTokenButton()"></app-login-button>
-                
-                <app-signup-button  *ngIf="status && signUpStatus" (click)="signUp()"></app-signup-button>
-
-                <div class="sign-up" *ngIf="status && !signUpStatus"> 
-                    <app-button  classItem="link"  text="Sign Up?" (click) ="SignUpPageShow()"></app-button>
-                </div>
-
-                <div class="giris-yap" *ngIf="signUpStatus ">
-                    <app-button classItem="link"  text="or Log In" (click) ="ngOnInit()"></app-button>
-                </div>
-
+                <!-- Signup -->
+                <app-signup-forms *ngIf="signUpStatus"></app-signup-forms>
             
         </div>
-        
     </div>
 </div>
+
+

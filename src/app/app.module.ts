@@ -42,6 +42,12 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 
 // For MDB Angular Free
 import { NavbarModule, WavesModule } from 'angular-bootstrap-md'
+import { FormService } from './services/form.service';
+import { AuthGuard } from './auth.guard';
+import { LoginFormsComponent } from './partial/login-forms/login-forms.component';
+import { PasswordForgottenFormsComponent } from './partial/password-forgotten-forms/password-forgotten-forms.component';
+import { SignupFormsComponent } from './partial/signup-forms/signup-forms.component';
+
 
 @NgModule({
   declarations: [
@@ -68,7 +74,10 @@ import { NavbarModule, WavesModule } from 'angular-bootstrap-md'
     NotFoundComponent,
     WelcomeComponent,
     CastDetailComponent,
-    SafePipe
+    SafePipe,
+    LoginFormsComponent,
+    PasswordForgottenFormsComponent,
+    SignupFormsComponent
 
   ],
   imports: [
@@ -85,13 +94,19 @@ import { NavbarModule, WavesModule } from 'angular-bootstrap-md'
     MatIconModule,
     MatToolbarModule,
     NavbarModule, 
-    WavesModule
+    WavesModule,
+    FormsModule
   ],
   providers: [
+    FormService, AuthGuard,
     {
       provide: 'apiUrl',
       //useValue: 'https://localhost:5001/api/v1'
       useValue: 'https://movieproject20211028113058.azurewebsites.net/api/v1'
+    },
+    {
+      provide:"tokenValue",
+      useValue: localStorage.getItem("jwt-token")
     }
   ],
   bootstrap: [AppComponent],

@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { empty, Observable } from 'rxjs';
 import { CreateSession } from '../models/CreateSession';
+import { Login } from '../models/login';
 import { ResetPassword } from '../models/ResetPassword';
 import { SessionWithLogin } from '../models/sessionWithLogin';
 import { SignUp } from '../models/SignUp';
@@ -42,9 +43,9 @@ export class FormService {
     this.TxtSurname = surname;
   }
 
-  sendEmail():Observable<any> {
+  sendEmail(email:string):Observable<any> {
     
-    return this.http.get(this.apiUrl +"/authentication/reset-password?email="+this.TxtEmail);
+    return this.http.get(this.apiUrl +"/authentication/reset-password?email="+email);
   }
 
   sendNewPassword(email:string):Observable<any>{
@@ -57,22 +58,17 @@ export class FormService {
     return this.http.post(this.apiUrl +"/authentication/update-password",reset); 
   }
 
-  signUp():Observable<any> {
+  signUp(signUp: SignUp):Observable<any> {
 
-      const signUp = new SignUp(0,this.TxtName,this.TxtSurname,this.TxtEmail,this.TxtPassword,3);
       return this.http.post(this.apiUrl +"/authentication/register",signUp)
     
-          
   }
 
-  authenticate():Observable<any> {
+  login(email:string, password:string):Observable<any> {
 
-    if(this.TxtEmail.length == 0 || this.TxtPassword.length < 8){
-      this.snacbar.createSnackbar("error","Invalid email or password");
-      return empty();
-    }
-
-      const user = new User(1,"","",this.TxtEmail,this.TxtPassword,"","",3);
+    
+      const user = new User(1,"","",email,password,"","",3);
+      //const user = new Login(email,password);
 
       //create jwt token
       return this.http.post(this.apiUrl +"/authentication/authenticate",user);
@@ -115,6 +111,10 @@ export class FormService {
     const headers = { 'content-type': 'application/json'}
     return this.http.post(this.apiUrl +"/authentication/create-session",createSession,{'headers':headers, responseType: 'text'})
 
+  }
+
+  loggedIn(){
+    return localStorage.getItem("jwt-token");
   }
 
 }
