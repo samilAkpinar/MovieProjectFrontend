@@ -1,18 +1,22 @@
 <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value)">
     
-    <label class="label" >Email</label>
-    <input class="text-font-18" name="email" type="email" placeholder="Enter your email address" (click)="onFocus()" (blur)="onBlur()" ngModel />
+    <label [ngClass]="{'label':email.pristine  ,'label-error': email.invalid && !email.pristine  , 'label-focus': email.valid}">Email</label>
+    <input [ngClass]="{'input-error': email.invalid && !email.pristine, 'input-success':email.valid }" class="text-font-18" required #email="ngModel" email name="email" type="email" placeholder="Enter your email address"  ngModel />
+    <!-- <span *ngIf="name.invalid && name.touched" style=" margin-top: 0px; color: red;">Required</span>  --> 
     
-    <label class="label" >Password</label>
-    <input class="text-font-18" name="password"  type="password" placeholder="************" (click)="onFocus()" (blur)="onBlur()" ngModel />
+    <label [ngClass]="{'label':password.pristine  ,'label-error': password.invalid && !password.pristine , 'label-focus': password.valid}">Password</label>
+    <input [ngClass]="{'input-error': password.invalid && !password.pristine, 'input-success':password.valid }" class="text-font-18" minlength="8" required #password="ngModel" name="password"  type="password" placeholder="************" ngModel />
+    <!-- <span *ngIf="password.invalid && password.touched" style="color: red;">Required</span> -->
     
     <!-- forgot password link -->
     <div class="password-button-right"> 
         <div class="link" (click)="goToForgotPasswordPage()">Forgot Password?</div>
     </div>
 
-    <app-button typeItem="submit" classItem="button" text="Log In"></app-button>
     
+   <!-- <app-button  typeItem="submit" classItem="button" text="Log In"></app-button>  -->
+    <button [disabled]="userForm.invalid"  type="submit" class="button" > Log In</button>
+
     <div class="sign-up" > 
         <div  class="link"  (click) ="goToSignUpPage()">Sign Up?</div>
     </div>

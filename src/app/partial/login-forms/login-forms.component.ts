@@ -24,7 +24,7 @@ export class LoginFormsComponent implements OnInit {
 
   ngOnInit(): void {
     this.labelState = false;
-    
+        
   }
 
   
