@@ -29,13 +29,38 @@ input{
     opacity: 1; /* Firefox */
   }
 
-input:focus {
+.input:focus {
+    outline: none;
+    background: #FFFFFF;
+    border: 1px solid black;
+    box-sizing: border-box;
+    border-radius: 8px;
+
+}
+
+.input-success {
     outline: none;
     background: #FFFFFF;
     border: 1px solid #3988FF;
     box-sizing: border-box;
     border-radius: 8px;
 
+}
+
+.input-error {
+    outline: none;
+    background: #FFFFFF;
+    border: 1px solid red;
+    box-sizing: border-box;
+    border-radius: 8px;
+
+}
+
+.input:touched {
+    outline: none;
+    background: #E5E5E5;
+    box-sizing: border-box;
+    border-radius: 8px;
 }
 
 .error-style{
@@ -47,6 +72,15 @@ input:focus {
 .label-focus {
     margin-bottom: 6px;
     color: #3988FF;
+}
+
+.label-error {
+    margin-bottom: 6px;
+    color: red;
+}
+
+.border-error{
+    color: red;
 }
 
 .search-input {
@@ -125,3 +159,131 @@ input:focus {
     }
 
 }
+
+
+
+
+.button{
+    
+    height: 46px;
+    background-color: #109CF1;
+    border: 1px solid #109CF1;
+    width: 100%;
+    border-radius: 8px;
+    box-sizing: border-box;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+
+    text-align: center;
+    color: #FFFFFF
+    
+}
+.button:hover {
+    background-color: #34AFF9;
+  }
+  
+  .button:active {
+    background-color: #098EDF;;
+  }
+
+
+.link{
+    color: #3988FF;
+    border: none;
+    background-color: white;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+}
+
+.add-contact-button {
+    color: #FFFFFF;
+    background: #109CF1;
+    box-shadow: 0px 4px 10px rgba(16, 156, 241, 0.24);
+    border-radius: 4px;
+    outline: none;
+    width: 160px;
+    height: 42px;
+    border:none;
+
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 19px;
+    /* identical to box height */
+
+    text-align: center;
+}
+
+.add-contact-button:hover {
+    background: #34AFF9;
+    box-shadow: 0px 8px 16px rgba(52, 175, 249, 0.2);
+    border-radius: 4px;
+}
+
+.add-contact-button:active {
+    background: #098EDF;
+    box-shadow: 0px 2px 6px rgba(9, 142, 223, 0.3);
+    border-radius: 4px;
+}
+
+@media (max-width: 720px) { 
+    .button {
+        margin-bottom: 43px;
+    }
+    
+}
+
+
+
+.detail-button {
+    background: #109CF1;
+    border: none;
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+} 
+
+.detail-button:hover {
+    background: #34AFF9;
+}
+
+.detail-button:active {
+    background: #098EDF;
+}
+
+.vote-movie-button {
+    background: #109CF1;
+    border: none;
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.vote-movie-button:hover {
+    background: #34AFF9;
+}
+
+.vote-movie-button:active {
+    background: #098EDF;
+}
+
+@media (prefers-color-scheme: dark) {
+ 
+    .link {
+        background-color: #2E2E2E;
+    }
+}
+
+
+
+
