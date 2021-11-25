@@ -12,11 +12,12 @@
     <label [ngClass]="{'label':password.pristine  ,'label-error': password.invalid && !password.pristine  , 'label-focus': password.valid}" >Password</label>
     <input [ngClass]="{'input-error': password.invalid && !password.pristine, 'input-success':password.valid }" class="text-font-18" minlength="8" #password="ngModel" required name="password"  type="password" placeholder="************" ngModel />
     
-    <!-- <app-button typeItem="submit" classItem="button" text="Log In"></app-button> -->
-    <button [disabled]="userForm.invalid"  type="submit" class="button" > Sign Up</button>
-    
+    <button  [ngClass]="{'button--loading': spinner}" class="button" [disabled]="userForm.invalid"  type="submit"> 
+        <span class="button__text" >Sign Up</span>
+    </button>
+
     <div class="login" > 
-        <div  class="link"  (click) ="goToLoginPage()">or Log In?</div>
+        <div type="button"  class="link"  (click) ="goToLoginPage()">or Log In?</div>
     </div>
 
 </form>

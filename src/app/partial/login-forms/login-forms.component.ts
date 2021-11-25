@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginComponent } from 'src/app/pages/login/login.component';
 import { FormService } from 'src/app/services/form.service';
@@ -11,38 +11,28 @@ import { SnackbarService } from 'src/app/services/snackbar.service';
 })
 export class LoginFormsComponent implements OnInit {
 
-  labelState!: boolean; //input focus durumundaki style değişimidir.
-  value: string = "";//formdan gelen email ve şifre değerleridir.
-
+  spinner!: boolean; 
+  
   constructor(
     private loginFunctions: LoginComponent,
     private formService: FormService,
     private snackbar : SnackbarService,
     private route : Router
   ) {  }
-
+  
 
   ngOnInit(): void {
-    this.labelState = false;
-        
+    this.spinner = false;
   }
 
   
-  onFocus():void {
-    this.labelState = true;
-  }
-
-  onBlur():any {
-
-    this.labelState = false;
-  }
-
   onSubmit(data:any):void {
-    //this.showSpinner = true;
+    this.spinner = true;
 
     //required yapısını olmalı
     if(data.email.length == 0 || data.password.length < 8){
       this.snackbar.createSnackbar("error","Invalid email or password");
+      this.spinner = false;
       return;
     }
     
@@ -53,7 +43,7 @@ export class LoginFormsComponent implements OnInit {
       if(value.result == false){
 
         this.snackbar.createSnackbar('error',"Error, Invalid email and password")
-        //this.showSpinner = false;
+        this.spinner = false;
         return value.result;
       
       }
@@ -67,7 +57,7 @@ export class LoginFormsComponent implements OnInit {
         
         if(!getData.result){
           this.snackbar.createSnackbar("error","Something went wrong, Please try again later");
-          //this.showSpinner = false;
+          this.spinner = false;
           return value.result;
         }
 
@@ -79,7 +69,7 @@ export class LoginFormsComponent implements OnInit {
         
         if(!sessionWithLogin.result){
           this.snackbar.createSnackbar("error","Something went wrong, Please try again later");
-          //this.showSpinner = false;
+          this.spinner = false;
           return sessionWithLogin.result;
         }
 
@@ -101,16 +91,14 @@ export class LoginFormsComponent implements OnInit {
         }else{
 
           this.snackbar.createSnackbar('error',"Login failed")
+          this.spinner = false;
         }
 
-        //this.showSpinner = false;
         });
 
        });
 
       });
-
-      //this.showSpinner = false;
 
     });
 

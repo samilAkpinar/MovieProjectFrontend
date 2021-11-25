@@ -12,8 +12,8 @@ import { SnackbarService } from 'src/app/services/snackbar.service';
 })
 export class SignupFormsComponent implements OnInit {
 
-  labelState!: boolean; //input focus durumundaki style değişimidir.
-  value: string = "";//formdan gelen email ve şifre değerleridir.
+  spinner!: boolean; //button loading
+  
 
   constructor(
     private loginFunctions: LoginComponent,
@@ -25,22 +25,13 @@ export class SignupFormsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.labelState = false;
+    this.spinner = false;
   }
 
-  
-  onFocus():void {
-    this.labelState = true;
-  }
-
-  onBlur():any {
-
-    this.labelState = false;
-  }
-
+ 
   onSubmit(data:any) {
     
-    //this.showSpinner = true;
+    this.spinner = true;
 
     const signUp = new SignUp(0, data.name, data.surname, data.email, data.password, 3);
     
@@ -52,13 +43,13 @@ export class SignupFormsComponent implements OnInit {
 
         this.snackbar.createSnackbar('info','User save')
         this.router.navigate(['/login']);
+        this.spinner = false;
         
       }else{
 
         this.snackbar.createSnackbar('error',"User didn't save")
+        this.spinner = false;
       }
-
-      //this.showSpinner = false;
       
     });
 
@@ -66,7 +57,6 @@ export class SignupFormsComponent implements OnInit {
 
   goToLoginPage(){
     this.loginFunctions.loginPageShow();
-    //console.log("goToLoginPage");
   }
 
 }

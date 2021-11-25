@@ -10,15 +10,18 @@
     
     <!-- forgot password link -->
     <div class="password-button-right"> 
-        <div class="link" (click)="goToForgotPasswordPage()">Forgot Password?</div>
+        <div type="button" class="link" (click)="goToForgotPasswordPage()">Forgot Password?</div>
     </div>
 
     
    <!-- <app-button  typeItem="submit" classItem="button" text="Log In"></app-button>  -->
-    <button [disabled]="userForm.invalid"  type="submit" class="button" > Log In</button>
+    <button  [ngClass]="{'button--loading': spinner}" class="button" [disabled]="userForm.invalid"  type="submit"> 
+        <span class="button__text" >Log In</span>
+    </button>
 
     <div class="sign-up" > 
-        <div  class="link"  (click) ="goToSignUpPage()">Sign Up?</div>
+        <div type="button" class="link"  (click) ="goToSignUpPage()">Sign Up?</div>
     </div>
 
 </form>
+

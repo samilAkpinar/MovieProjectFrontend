@@ -161,10 +161,8 @@ input{
 }
 
 
-
-
 .button{
-    
+    position: relative;
     height: 46px;
     background-color: #109CF1;
     border: 1px solid #109CF1;
@@ -186,10 +184,42 @@ input{
     background-color: #34AFF9;
   }
   
-  .button:active {
-    background-color: #098EDF;;
-  }
+.button:active {
+    background-color: #098EDF;
+ }
 
+ //button--loading
+.button--loading .button__text{
+    visibility: hidden; //buton içersindeki texti görünmez yapar.
+    opacity: 0;
+}
+
+.button--loading::after {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border: 4px solid transparent;
+    border-top-color: #FFFFFF;
+    border-radius: 50%;
+    animation: button-loading-spinner 1s ease infinite;
+}
+
+@keyframes button-loading-spinner {
+    from {
+        transform: rotate(0turn);
+    }
+
+    to {
+        transform: rotate(1turn);
+    }
+}
+//button--loading end
 
 .link{
     color: #3988FF;
