@@ -21,6 +21,7 @@ export class ForgottenPasswordComponent implements OnInit {
     email:string="";
     verify!:string;
     emailEncrypted:any;
+    spinner!: boolean; 
     
   ngOnInit(): void {
 
@@ -37,19 +38,30 @@ export class ForgottenPasswordComponent implements OnInit {
      this.navigate.navigate(['/404']);
    }
 
+   this.spinner = false;
+
   }
 
-  //button click
-  resetPassword():void{
-    this.formService.sendNewPassword(this.email).subscribe(value =>{
-      
-      if(value.result){
+  onSubmit(data:any) {
+    this.spinner = true;
+
+    this.formService.sendNewPassword(this.email,data['password']).subscribe(value => {
+      if(value.result) 
+      {
         this.snackbar.createSnackbar("info","Password update successfully");
-      }else {
-        
+        this.spinner = false;
+      }else 
+      {
         this.snackbar.createSnackbar("info","Password update failed");
+        this.spinner = false;
       }
-    })
+    });
   }
+
+  goToLoginPage(){
+    this.navigate.navigate(['/login']);
+  }
+
+
 
 }

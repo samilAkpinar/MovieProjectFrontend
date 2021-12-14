@@ -89,18 +89,15 @@
                 <strong>Your Vote: </strong>
                 <span>{{userVote}}</span>
             </div>
-        </div>
-
-        <hr>
-        <div class="spinner" *ngIf="showWoteSpinner">
-            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-        </div>
-
-        <div class="vote col-lg-12">
-            <strong>Vote Movie</strong>
-            <hr>
-            <app-input class="vote-input" placeholder="vote movie" type="votedMovie"></app-input>
-            <app-button classItem="vote-movie-button" text="Send Vote" (click)="sendVoteMovie()"></app-button>
+            <button mat-icon-button style="border: none; background-color: white;" *ngFor="let r of ratingArr; index as i" 
+                (click)="onClick(i)">
+                <span style="color: #FFC107; font-size: 40px;">
+                    <mat-icon>
+                        {{ returnStar(i) }}
+                    </mat-icon>
+                </span>
+                
+            </button>
         </div>
 
     </div>

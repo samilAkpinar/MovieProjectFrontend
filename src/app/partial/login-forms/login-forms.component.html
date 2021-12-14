@@ -1,7 +1,7 @@
 <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value)">
     
     <label [ngClass]="{'label':email.pristine  ,'label-error': email.invalid && !email.pristine  , 'label-focus': email.valid}">Email</label>
-    <input [ngClass]="{'input-error': email.invalid && !email.pristine, 'input-success':email.valid }" class="text-font-18" required #email="ngModel" email  name="email" type="email" placeholder="Enter your email address"  ngModel />
+    <input [ngClass]="{'input-error': email.invalid && !email.pristine, 'input-success':email.valid }" class="text-font-18" required #email="ngModel" email name="email" type="email" placeholder="Enter your email address"  ngModel />
     <!-- <span *ngIf="name.invalid && name.touched" style=" margin-top: 0px; color: red;">Required</span>  --> 
     
     <label [ngClass]="{'label':password.pristine  ,'label-error': password.invalid && !password.pristine , 'label-focus': password.valid}">Password</label>

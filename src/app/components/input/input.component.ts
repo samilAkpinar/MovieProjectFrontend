@@ -64,10 +64,6 @@ export class InputComponent implements OnInit {
       //console.log("surname", data);
       this.formService.addSurname(data);
       
-    }else if(this.type == "votedMovie" && data != ''){
-
-      this.voteValue.addVoteValue(+data);
-      
     }else{
 
       this.formService.addName("");

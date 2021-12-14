@@ -19,12 +19,20 @@ export class MovieDetailComponent implements OnInit {
     showWoteSpinner: boolean = false;
     movieVideo:any = []
     youtubeKey:string = "https://www.youtube.com/embed/";
+       
+
+    //rating structure
+    rating = 0;
+    starCount = 10;
+    ratingArr:  boolean[] = []; // true => solid; star; false => empty star
 
   constructor(
     private movie:MovieService,
     private route:ActivatedRoute,
     private snackbar:SnackbarService
-    ) { }
+    ) {
+      this.ratingArr = Array(this.starCount).fill(false);
+     }
 
   ngOnInit(): void {
     let id = +this.route.snapshot.params['id'];
@@ -36,13 +44,10 @@ export class MovieDetailComponent implements OnInit {
     //get movie video by id
     this.movie.getMovieVideoById(id).subscribe(value =>{
 
-     //console.log("movie ",value);
-
       if(value.result){
 
         this.movieVideo = value.data[0];
         this.youtubeKey = this.youtubeKey + this.movieVideo.key;
-        //console.log("movie , ", this.youtubeKey);
       
       }else{
 
@@ -53,7 +58,6 @@ export class MovieDetailComponent implements OnInit {
 
     //get movie by id
     this.movie.getMovieById(id).subscribe(value => {
-     //console.log("get movie by id: ", value.data);
      
      if(value.result){
 
@@ -66,55 +70,38 @@ export class MovieDetailComponent implements OnInit {
 
       this.showSpinner = false;
 
-    })
-
-    
-    this.movie.getUserVote(id, this.sessionId).subscribe(value => {
-      
-      //console.log("deneme", value.data );
-      var rateValue = JSON.parse(value.data);
-
-      //console.log("vaot. ", rateValue.rated.value)
-
-      if(value.result){
-
-        this.userVote = rateValue.rated.value;
-
-      }else {
-          
-        this.userVote = "-";
-      }
     });
+
+    this.getRatedMovie();
 
   }
 
 
-  //inputa girilen değeri backente kayıt eder.
-  sendVoteMovie() {
+
+  returnStar(i: number) {
+    if (this.rating >= i + 1) {
+      return 'star';
+    } else {
+      return 'star_border';
+    }
+  }
+
+  onClick(i:number){
+    this.rating = i + 1;
+    console.log("onClick: i değeri : " , (i + 1));
+    //update database for rate
+    this.sendVoteMovie(this.rating);
+  }
+
+  //update rating
+  sendVoteMovie(rating:number) {
     this.showWoteSpinner = true;
 
-    this.movie.putVotedMovie(this.movieId,this.sessionId).subscribe(data => {
-
-      //console.log("vote data: ", data)
+    this.movie.putVotedMovie(rating,this.movieId,this.sessionId).subscribe(data => {
 
       if(data.result){
-
-        this.movie.getUserVote(this.movieId, this.sessionId).subscribe(value => {
-      
-          if(value.result){
-
-            var jsonResult = JSON.parse(value.data);
-
-            this.userVote = jsonResult.rated.value;
-            this.ngOnInit();
-            this.showWoteSpinner = false;
-            
-          }else {
-    
-            this.userVote = "-";
-            this.showWoteSpinner = false;
-          }
-        });
+        //get from database;
+        this.getRatedMovie();
 
       }else{
         this.userVote = "-";
@@ -122,6 +109,27 @@ export class MovieDetailComponent implements OnInit {
       }
 
     });
+
+    this.showSpinner = false;
   }
+
+  getRatedMovie() {
+      //get to rated movie
+      this.movie.getUserVote(this.movieId, this.sessionId).subscribe(value => {
+        
+      var rateValue = JSON.parse(value.data);
+
+      if(value.result){
+
+        this.userVote = rateValue.rated.value;
+        //sign star
+        this.rating = rateValue.rated.value;
+      }else {
+          
+        this.userVote = "-";
+      }
+    });
+  }
+  
 
 }

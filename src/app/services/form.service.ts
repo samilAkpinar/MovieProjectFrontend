@@ -48,12 +48,12 @@ export class FormService {
     return this.http.get(this.apiUrl +"/authentication/reset-password?email="+email);
   }
 
-  sendNewPassword(email:string):Observable<any>{
+  sendNewPassword(email:string, password:string):Observable<any>{
 
     
     const reset = new ResetPassword();
     reset.email = email;
-    reset.password = this.TxtPassword;
+    reset.password = password;
 
     return this.http.post(this.apiUrl +"/authentication/update-password",reset); 
   }

@@ -85,8 +85,8 @@ import { SignupFormsComponent } from './partial/signup-forms/signup-forms.compon
     FormService, AuthGuard,
     {
       provide: 'apiUrl',
-      //useValue: 'https://localhost:5001/api/v1'
-      useValue: 'https://movieproject20211028113058.azurewebsites.net/api/v1'
+      useValue: 'https://localhost:5001/api/v1'
+      //useValue: 'https://movieproject20211028113058.azurewebsites.net/api/v1'
     },
     {
       provide:"tokenValue",

@@ -30,8 +30,6 @@ export class WelcomeComponent implements OnInit {
 
     this.showSpinner = true;
 
-    console.log("upcoming veri isteniyor...")
-
     this.pageChanged(1);
 /*
     this.movies.getUpcomingMovies(1).subscribe(value =>{

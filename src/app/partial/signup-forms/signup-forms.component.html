@@ -1,10 +1,10 @@
 <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value)">
     
     <label [ngClass]="{'label':name.pristine  ,'label-error': name.invalid && !name.pristine  , 'label-focus': name.valid}" >Name</label>
-    <input [ngClass]="{'input-error': name.invalid && !name.pristine, 'input-success':name.valid }" class="text-font-18" pattern="[^0-9]*" #name="ngModel" required name="name" type="text" placeholder="Enter your name" ngModel />
+    <input [ngClass]="{'input-error': name.invalid && !name.pristine, 'input-success':name.valid }" class="text-font-18" pattern="[A-Za-zÇçğĞİıIÖöŞşÜü]*" #name="ngModel" required name="name" type="text" placeholder="Enter your name" ngModel />
 
     <label [ngClass]="{'label':surname.pristine  ,'label-error': surname.invalid && !surname.pristine  , 'label-focus': surname.valid}" >Surname</label>
-    <input [ngClass]="{'input-error': surname.invalid && !surname.pristine, 'input-success':surname.valid }" class="text-font-18" #surname="ngModel" required pattern="[^0-9]*" name="surname" type="text" placeholder="Enter your surname"ngModel />
+    <input [ngClass]="{'input-error': surname.invalid && !surname.pristine, 'input-success':surname.valid }" class="text-font-18" #surname="ngModel" required pattern="[A-Za-zÇçğĞİıIÖöŞşÜü]*" name="surname" type="text" placeholder="Enter your surname"ngModel />
 
     <label [ngClass]="{'label':email.pristine  ,'label-error': email.invalid && !email.pristine  , 'label-focus': email.valid}" >Email</label>
     <input [ngClass]="{'input-error': email.invalid && !email.pristine, 'input-success':email.valid }" class="text-font-18" #email="ngModel" required email  name="email" type="email" placeholder="Enter your email address" ngModel />

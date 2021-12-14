@@ -10,8 +10,7 @@ import { SnackbarService } from 'src/app/services/snackbar.service';
 })
 export class PasswordForgottenFormsComponent implements OnInit {
 
-  labelState!: boolean; //input focus durumundaki style değişimidir.
-  value: string = "";//formdan gelen email ve şifre değerleridir.
+  spinner!: boolean; 
 
   constructor(
     private loginFunctions: LoginComponent,
@@ -22,19 +21,10 @@ export class PasswordForgottenFormsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.labelState = false;
+    this.spinner = false;
   }
 
   
-  onFocus():void {
-    this.labelState = true;
-  }
-
-  onBlur():any {
-
-    this.labelState = false;
-  }
-
   goToLoginPage(){
 
     this.loginFunctions.loginPageShow();
@@ -44,7 +34,7 @@ export class PasswordForgottenFormsComponent implements OnInit {
   //forgot password
   onSubmit(data:any) {
 
-    //this.showSpinner = true;
+    this.spinner = true;
     console.log(data.email);
     
     this.formService.sendEmail(data.email).subscribe(value =>{
@@ -60,7 +50,7 @@ export class PasswordForgottenFormsComponent implements OnInit {
       }
 
     });
-    //this.showSpinner = false;
+    this.spinner = false;
 
 
   }
