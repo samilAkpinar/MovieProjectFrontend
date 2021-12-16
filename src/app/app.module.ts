@@ -86,7 +86,7 @@ import { SignupFormsComponent } from './partial/signup-forms/signup-forms.compon
     {
       provide: 'apiUrl',
       //useValue: 'https://localhost:5001/api/v1' // for localhost
-      useValue:'http://www.trailer-movie.somee.com/api/v1'  //for file server
+      useValue:'https://www.trailer-movie.somee.com/api/v1'  //for file server
       //useValue: 'https://movieproject20211028113058.azurewebsites.net/api/v1' //for azure
     },
     {
