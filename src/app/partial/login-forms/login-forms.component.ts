@@ -28,7 +28,7 @@ export class LoginFormsComponent implements OnInit {
   
   onSubmit(data:any):void {
     this.spinner = true;
-
+    
     //required yapısını olmalı
     if(data.email.length == 0 || data.password.length < 8){
       this.snackbar.createSnackbar("error","Invalid email or password");
